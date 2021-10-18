@@ -6,7 +6,7 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/10/18 21:39:57 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/10/18 22:21:23 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ all			:	score run
 
 $(NAME)		:	$(SRCS)
 				@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
-
 
 re			:	fclean all
 
