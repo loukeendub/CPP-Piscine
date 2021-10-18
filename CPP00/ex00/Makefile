@@ -6,7 +6,7 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/10/18 19:21:33 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/10/18 21:39:57 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,25 +24,22 @@ RM		=	rm -rf
 
 SRCS			=	*.cpp
 
-OBJS	=	$(SRCS:.cpp=.o)
-
 #	RULES
+
+all			:	score run
 
 $(NAME)		:	$(SRCS)
 				@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
-all			:	run score
 
 re			:	fclean all
 
 clean		:
-				$(RM) $(OBJS)
 
 fclean		:	clean
-				$(RM) $(NAME)
+				@$(RM) $(NAME)
 
 run			:	$(NAME)
-				./$(NAME)
 
 score		:
 				@echo "------------------[ CPP PISCINE ]------------------"
@@ -53,4 +50,4 @@ joke		:
 				@echo "--------------[ MEGAPHONE ]---------------"
 				@echo "|	CAN YOU SPEAK A BIT LOUDER, PLEASE?	|"
 				@echo "------------------------------------------"
-.phony		:	clean fclean re score joke run
+.phony		:	run clean fclean re score joke
