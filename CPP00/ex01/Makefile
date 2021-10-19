@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
+#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/10/18 22:24:59 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/10/19 15:49:09 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------[ MEGAPHONE ]---------------"
-				@echo "|	CAN YOU SPEAK A BIT LOUDER, PLEASE?	|"
+				@echo "---------[ MY MOODY PHONE BOOK ]----------"
+				@echo "|	hey baby, what's your phone number?	|"
 				@echo "------------------------------------------"
 .phony		:	run clean fclean re score joke
