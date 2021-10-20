@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:33:51 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/20 18:49:41 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/20 19:41:28 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	Phonebook::searchContact(void) const
 {
 	//	print contact list
 	//	ask for valid index input
-	//	print contact infos (each followed by newl)
+	//	display contact info (each followed by newl)
 }
 
 void	Phonebook::addContact(void)

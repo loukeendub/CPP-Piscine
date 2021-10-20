@@ -6,11 +6,14 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:38 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/20 18:18:00 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/20 19:18:43 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef CONTACT_CLASS_HPP
+# define CONTACT_CLASS_HPP
+
+# include <iostream>
 
 class contact
 {
@@ -32,3 +35,4 @@ public:
 	void	setDarkestSecret(std::string& input);
 	void	displayContactInfo() const;
 };
+#endif

@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:34 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/20 18:17:33 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/20 19:16:10 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,10 @@ void	contact::setDarkestSecret(std::string& input)
 
 void	contact::displayContactInfo() const
 {
-	
+	//	print | _index		|	int
+	//	print | first name	|	string
+	//	print |	last name	|	string
+	//	print |	nickname	|	string
+
+	//use substr(9 chars) for >10char-long strings and append '.' at the end
 }
