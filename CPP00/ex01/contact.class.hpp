@@ -6,11 +6,10 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:38 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/20 17:22:12 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/20 18:18:00 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#
 #include <iostream>
 
 class contact
@@ -25,4 +24,11 @@ private:
 public:
 	contact(/* args */);
 	~contact();
+
+	void	setFirstName(std::string& input);
+	void	setLastName(std::string& input);
+	void	setNickname(std::string& input);
+	void	setPhoneNo(std::string& input);
+	void	setDarkestSecret(std::string& input);
+	void	displayContactInfo() const;
 };
