@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:38 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/22 11:48:53 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/22 13:12:44 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,20 @@
 class contact
 {
 private:
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	phone_no;
-	std::string	darkest_secret;
-	bool	init;// flag for initialized contacts in array
+	std::string	_first_name;
+	std::string	_last_name;
+	std::string	_nickname;
+	std::string	_phone_no;
+	std::string	_darkest_secret;
+	bool		_init;
 
 public:
 	contact(/* args */);
 	~contact();
 
-	void	setFirstName(std::string& input);
-	void	setLastName(std::string& input);
-	void	setNickname(std::string& input);
-	void	setPhoneNo(std::string& input);
-	void	setDarkestSecret(std::string& input);
-	void	displaySearchFields() const;
+	void	printSearchField(std::string data) const;
+	void	fillContactInfo();
+	void	displaySearchFields(int i) const;
 	void	displayContactInfo() const;
 };
 #endif
