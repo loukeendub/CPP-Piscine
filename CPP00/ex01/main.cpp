@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:34:07 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/20 19:41:24 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:08:33 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ int	main()
 			//call addContact
 		}
 		else if (input == "SEARCH")
-		{
-			// call searchContact
-		}
+			Phonebook::searchContact();
 		else
+		{
 			std::cout << "are you a selective analphabet or what?" << std::endl;
+			std::cout << "Let's try again..." << std::endl;
+		}
 	}
+	std::cout << "Quitting MY MOODY PHONEBOOK" << std::endl;
 	return (0);
 }

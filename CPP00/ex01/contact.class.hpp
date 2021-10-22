@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:38 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/20 19:18:43 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/22 11:48:53 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ private:
 	std::string	nickname;
 	std::string	phone_no;
 	std::string	darkest_secret;
+	bool	init;// flag for initialized contacts in array
 
 public:
 	contact(/* args */);
@@ -33,6 +34,7 @@ public:
 	void	setNickname(std::string& input);
 	void	setPhoneNo(std::string& input);
 	void	setDarkestSecret(std::string& input);
+	void	displaySearchFields() const;
 	void	displayContactInfo() const;
 };
 #endif
