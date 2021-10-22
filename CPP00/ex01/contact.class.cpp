@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:34 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/22 13:20:50 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:38:01 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,33 @@ contact::~contact()
 
 //functions of type contact below:
 
+bool	contact::checkInit()
+{
+	return (this->_init);
+}
+
 void	contact::printSearchField(std::string data) const
 {
 	//use substr(9 chars) for >10char-long strings and append '.' at the end
-	
-	//	print | _index		|	int
-	//	print | first name	|	string
-	//	print |	last name	|	string
-	//	print |	nickname	|	string
-
+	if(data.length() > 10)
+		std::cout << std::setw(10) << data.substr(0, 9).append(".") << "|";
+	else
+		std::cout << std::right << std::setfill(' ') <<std::setw(10) << data << "|";
+	return ;
 }
 
 void	contact::displaySearchFields(int i) const
 {
-	std::cout << "         " << i + 1 << "|";
+	//	print | _index		|	int
+	std::cout << "|         " << i + 1 << "|";
+	//	print | first name	|	string
 	this->printSearchField(this->_first_name);
+	//	print |	last name	|	string
 	this->printSearchField(this->_last_name);
+	//	print |	nickname	|	string
 	this->printSearchField(this->_nickname);
+	std::cout << std::endl;
+	return ;
 }
 
 void	contact::displayContactInfo() const
@@ -51,6 +61,7 @@ void	contact::displayContactInfo() const
 	std::cout << this->_nickname << std::endl;
 	std::cout << this->_phone_no << std::endl;
 	std::cout << this->_darkest_secret << std::endl;
+	return ;
 }
 
 void	contact::fillContactInfo()

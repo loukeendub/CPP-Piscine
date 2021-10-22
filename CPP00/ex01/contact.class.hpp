@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:38 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/22 13:12:44 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:43:29 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CONTACT_CLASS_HPP
 
 # include <iostream>
+# include <iomanip>//	setw
 
 class contact
 {
@@ -29,6 +30,7 @@ public:
 	contact(/* args */);
 	~contact();
 
+	bool	checkInit() const;
 	void	printSearchField(std::string data) const;
 	void	fillContactInfo();
 	void	displaySearchFields(int i) const;

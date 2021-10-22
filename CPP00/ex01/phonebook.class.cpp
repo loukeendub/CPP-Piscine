@@ -6,53 +6,57 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:33:51 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/22 13:03:55 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/22 14:44:15 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.class.hpp"
 
-Phonebook::Phonebook()
+phonebook::phonebook()
 {
 	this->_index = 0;
-	return;
+	return ;
 }
 
-Phonebook::~Phonebook()
+phonebook::~phonebook()
 {
-	return;
+	return ;
 }
 
 // functions of type Phonebook below:
 
-void	Phonebook::searchContact() const
+void	phonebook::searchContact() const
 {
 	int	i = 0;
 	std::string	tmp;
 
-	//	print contact list
-	std::cout << "|INDEX    |FIRST NAME|LAST NAME |NICKNAME  |" << std::endl;
 	if (this->_index == 0)
 		std::cout << "Phonebook is empty, what do you expect me to show you?" << std::endl;
-	while (i++ <= Phonebook::_index)
-		_contacts->displaySearchFields();
-	
+	//	print contact list
+	std::cout << "|    INDEX|FIRST NAME| LAST NAME|  NICKNAME|" << std::endl;
+	while (i++ < 8)
+	{
+		if(this->_contacts[i].checkInit())
+			this->_contacts[i].displaySearchFields(i);
+	}
+	//I AM DEBUGGING HERE!!!
 	//	ask for valid index input
 	std::cout << "Give me a valid index number and I will show you the details" << std::endl;
 	std::cin >> tmp;
-	if (tmp[0] > '0' && tmp[0] < '9')
+	if (tmp[0] > '0' && tmp[0] < '8')
 		i = atoi(tmp.c_str());
-	
 	//	display contact info (each followed by newl)
-	if (i > Phonebook::_index)
+	if (i > phonebook::_index)
 		std::cout << "Index number is incorrect. can't show you anything interesting..." << std::endl;
 	else
 		_contacts->displayContactInfo();
+	return ;
 }
 
-void	Phonebook::addContact()
+void	phonebook::addContact()
 {
 	this->_index %= 8;
 	this->_contacts[this->_index].fillContactInfo();
 	this->_index++;
+	return ;
 }
