@@ -39,7 +39,6 @@ void	phonebook::searchContact() const
 		if(this->_contacts[i].checkInit())
 			this->_contacts[i].displaySearchFields(i);
 	}
-	//I AM DEBUGGING HERE!!!
 	//	ask for valid index input
 	std::cout << "Give me a valid index number and I will show you the details" << std::endl;
 	std::cin >> tmp;
@@ -49,7 +48,7 @@ void	phonebook::searchContact() const
 	if (i > phonebook::_index)
 		std::cout << "Index number is incorrect. can't show you anything interesting..." << std::endl;
 	else
-		_contacts->displayContactInfo();
+		this->_contacts[i - 1]->displayContactInfo();
 	return ;
 }
 

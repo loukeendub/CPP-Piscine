@@ -56,11 +56,11 @@ void	contact::displaySearchFields(int i) const
 
 void	contact::displayContactInfo() const
 {
-	std::cout << this->_first_name << std::endl;
-	std::cout << this->_last_name << std::endl;
-	std::cout << this->_nickname << std::endl;
-	std::cout << this->_phone_no << std::endl;
-	std::cout << this->_darkest_secret << std::endl;
+	std::cout << "First Name	:	" << this->_first_name << std::endl;
+	std::cout << "Last Name		:	" << this->_last_name << std::endl;
+	std::cout << "Nickname		:	" << this->_nickname << std::endl;
+	std::cout << "Phone No.		:	" << this->_phone_no << std::endl;
+	std::cout << "Darkest Secret:	" << this->_darkest_secret << std::endl;
 	return ;
 }
 

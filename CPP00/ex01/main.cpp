@@ -13,26 +13,25 @@
 #include "contact.class.hpp"
 #include "phonebook.class.hpp"
 
-int	error(std::string message)
-{
-	std::cout << "Error :  " << message << std::endl;
-	return (1);
-}
-
 int	main()
 {
 	std::string	input;
 	
 	std::cout << "Welcome to MY MOODY PHONEBOOK, dude" << std::endl;
-
 	while (input != "EXIT")
 	{
 		std::cout << "What do you want me to do? [ADD] [SEARCH] [EXIT]"  << std::endl;
 		std::cin >> input;
 		if (input == "ADD")
+		{
+			std::cout << "Your choice is [ADD]" << std::endl;
 			phonebook::addContact();
+		}
 		else if (input == "SEARCH")
+		{
+			std::cout << "Your choice is [SEARCH]" << std::endl;
 			phonebook::searchContact();
+		}
 		else
 		{
 			std::cout << "are you a selective analphabet or what?" << std::endl;

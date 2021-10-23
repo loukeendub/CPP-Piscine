@@ -22,7 +22,7 @@ private:
 	int		_index;
 	contact	_contacts[8];
 public:
-	phonebook(/* args */);// constrcuctor
+	phonebook();// constrcuctor
 	~phonebook();// destructor
 
 	void	searchContact(void) const;// const alla fine sgnifica che la funzione non modifica dati
