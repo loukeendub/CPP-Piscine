@@ -46,7 +46,7 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "---------[ THE JOB(S) OF YOUR DREAMS ]--------"
-				@echo "|		Are you talking about Steve?		|"
-				@echo "----------------------------------------------"
+				@echo "--------[ THE JOB OF YOUR DREAMS ]--------"
+				@echo "|	Looks more like a detective story	|"
+				@echo "------------------------------------------"
 .phony		:	run clean fclean re score joke
