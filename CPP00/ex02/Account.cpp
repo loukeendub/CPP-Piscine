@@ -1,22 +1,23 @@
 #include <iostream>
 #include "Account.hpp"
 
-Account::Account( int initial_deposit )
+//	[PUBLIC :]
+Account::Account( int initial_deposit )//	constructor
 {
 	return ;
 }
 
-Account::~Account( void )
+Account::~Account( void )//	destructor
 {
 	return ;
 }
 
-static int	Account::getNbAccounts( void )
+static int	Account::getNbAccounts( void )//	returns the value of private var _nbAccounts
 {
 	return (this->_nbAccounts);
 }
 
-static int	Account::getTotalAmount( void )
+static int	Account::getTotalAmount( void )//	returns the value of private var _totalAmounts
 {
 	return (this->_totalAmount);
 }
@@ -52,6 +53,12 @@ int	Account::checkAmount( void ) const
 }
 
 void	Account::displayStatus( void ) const
+{
+
+}
+
+//	[PRIVATE :]
+static void	Account::_displayTimestamp( void )
 {
 
 }
