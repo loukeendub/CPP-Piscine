@@ -37,24 +37,24 @@ int		main( void ) {
 	ints_t::iterator	wit_begin	= withdrawals.begin();
 	ints_t::iterator	wit_end		= withdrawals.end();
 //	program execution :
-	Account::displayAccountsInfos();
-	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
-
+	Account::displayAccountsInfos();//	prints accounts infos
+	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );// for_each <algorithm>; mem_fun_ref <functional>;
+	//	prints accounts infos one by one
 	for ( acc_int_t it( acc_begin, dep_begin );
 		  it.first != acc_end && it.second != dep_end;
 		  ++(it.first), ++(it.second) ) {
 
-		(*(it.first)).makeDeposit( *(it.second) );
+		(*(it.first)).makeDeposit( *(it.second) );//	prints account p_amount info one by one
 	}
 
 	Account::displayAccountsInfos();
-	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
+	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );// for_each <algorithm>; mem_fun_ref <functional>;
 
 	for ( acc_int_t it( acc_begin, wit_begin );
 		  it.first != acc_end && it.second != wit_end;
 		  ++(it.first), ++(it.second) ) {
 
-		(*(it.first)).makeWithdrawal( *(it.second) );
+		(*(it.first)).makeWithdrawal( *(it.second) );//	prints account p_amount info one by one
 	}
 
 	Account::displayAccountsInfos();
