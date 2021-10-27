@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:38 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/22 14:43:29 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:37:15 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CONTACT_CLASS_HPP
 
 # include <iostream>
-# include <iomanip>//	setw
+# include <iomanip>
 
 class contact
 {
@@ -27,7 +27,7 @@ private:
 	bool		_init;
 
 public:
-	contact(/* args */);
+	contact();
 	~contact();
 
 	bool	checkInit() const;
