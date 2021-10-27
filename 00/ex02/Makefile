@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
+#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/10/19 15:49:09 by loukeen          ###   ########.fr        #
+#    Updated: 2021/10/27 17:56:24 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ fclean		:	clean
 run			:	$(NAME)
 
 score		:
-				@echo "------------------[ CPP PISCINE ]------------------"
+				@echo "-----------------[ CPP PISCINE 00 ]----------------"
 				@echo "|               powered by lmarzano               |"
 				@echo "-----------------------[READY]---------------------"
 

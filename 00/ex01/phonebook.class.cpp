@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:33:51 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/27 14:38:35 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:28:39 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,21 @@ void	phonebook::searchContact() const
 	else
 	{
 		std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|" << std::endl;
-		while (i < 8)
+		while (i < 8 && !this->_contacts[i].checkInit())
 		{
-			if (!this->_contacts[i].checkInit())
-				this->_contacts[i].displaySearchFields(i);
+			this->_contacts[i].displaySearchFields(i);
 			i++;
 		}
 		std::cout << "Give me a valid index number and I will show you the details" << std::endl;
 		std::getline(std::cin, tmp);
-		if (tmp[0] > '0' && tmp[0] < '8')
+		if (tmp[0] > '0' && tmp[0] < '8' && !tmp[1])
+		{
 			i = atoi(tmp.c_str());
-		if (i > phonebook::_index)
-			std::cout << "Index number is incorrect. can't show you anything interesting..." << std::endl;
+			if (i >= 1 && i <= 8)
+				this->_contacts[i - 1].displayContactInfo();
+		}
 		else
-			this->_contacts[i - 1].displayContactInfo();
+			std::cout << "Index number is incorrect. can't show you anything interesting..." << std::endl;
 	}
 	return ;
 }
