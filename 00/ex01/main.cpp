@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:34:07 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/22 14:32:04 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/27 13:11:39 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,30 @@
 int	main()
 {
 	std::string	input;
+	phonebook	phb;
 	
 	std::cout << "Welcome to MY MOODY PHONEBOOK, dude" << std::endl;
+	std::cout << "What do you want me to do?" << std::endl << "[ADD] [SEARCH] [EXIT]"  << std::endl;
+	std::getline(std::cin, input, '\n');
 	while (input != "EXIT")
 	{
-		std::cout << "What do you want me to do? [ADD] [SEARCH] [EXIT]"  << std::endl;
-		std::cin >> input;
 		if (input == "ADD")
 		{
 			std::cout << "Your choice is [ADD]" << std::endl;
-			phonebook::addContact();
+			phb.addContact();
 		}
 		else if (input == "SEARCH")
 		{
 			std::cout << "Your choice is [SEARCH]" << std::endl;
-			phonebook::searchContact();
+			phb.searchContact();
 		}
 		else
 		{
-			std::cout << "are you a selective analphabet or what?" << std::endl;
+			std::cout << "Please, read more carefully the three options I gave you." << std::endl;
 			std::cout << "Let's try again..." << std::endl;
 		}
+		std::cout << "What do you want me to do now?" << std::endl << "[ADD] [SEARCH] [EXIT]"  << std::endl;
+		std::getline(std::cin, input, '\n');
 	}
 	std::cout << "Quitting MY MOODY PHONEBOOK" << std::endl;
 	return (0);

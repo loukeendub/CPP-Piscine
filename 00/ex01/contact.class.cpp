@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:36:34 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/22 14:38:01 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/27 13:13:36 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 contact::contact()
 {
-	this->_init = false;
+	this->_init = true;
 	return;
 }
 
@@ -25,7 +25,7 @@ contact::~contact()
 
 //functions of type contact below:
 
-bool	contact::checkInit()
+bool	contact::checkInit() const
 {
 	return (this->_init);
 }
@@ -57,17 +57,17 @@ void	contact::displaySearchFields(int i) const
 void	contact::displayContactInfo() const
 {
 	std::cout << "First Name	:	" << this->_first_name << std::endl;
-	std::cout << "Last Name		:	" << this->_last_name << std::endl;
-	std::cout << "Nickname		:	" << this->_nickname << std::endl;
-	std::cout << "Phone No.		:	" << this->_phone_no << std::endl;
-	std::cout << "Darkest Secret:	" << this->_darkest_secret << std::endl;
+	std::cout << "Last Name	:	" << this->_last_name << std::endl;
+	std::cout << "Nickname	:	" << this->_nickname << std::endl;
+	std::cout << "Phone No.	:	" << this->_phone_no << std::endl;
+	std::cout << "Darkest Secret	:	" << this->_darkest_secret << std::endl;
 	return ;
 }
 
 void	contact::fillContactInfo()
 {
 	std::cout << "What's the FIRST NAME of this person ?" << std::endl;
-	std::getline(std::cin, this->_first_name);
+	std::getline(std::cin, this->_first_name, '\n');
 	//			*set last name from input
 	std::cout << "What's its LAST NAME ?" << std::endl;
 	std::getline(std::cin, this->_last_name);
@@ -81,6 +81,6 @@ void	contact::fillContactInfo()
 	std::cout << "One last question: Can you tell me its DARKEST SECRET ? I won't tell anyone, I swear !" << std::endl;
 	std::getline(std::cin, this->_darkest_secret);
 	//			_index++;
-	this->_init = true;
+	this->_init = false;
 	return ;
 }

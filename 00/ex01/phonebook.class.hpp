@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:33:30 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/22 14:32:06 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/27 12:18:40 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	phonebook();// constrcuctor
 	~phonebook();// destructor
 
-	void	searchContact(void) const;// const alla fine sgnifica che la funzione non modifica dati
-	void	addContact(void);
+	void	searchContact() const;// const alla fine sgnifica che la funzione non modifica dati
+	void	addContact();
 };
 #endif
