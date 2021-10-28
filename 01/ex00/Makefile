@@ -6,7 +6,7 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/10/28 13:02:05 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/10/28 16:28:36 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS			=	*.cpp
 
 #	RULES
 
-all			:	run score
+all			:	run  joke score
 
 $(NAME)		:	$(SRCS)
 				@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
@@ -46,7 +46,8 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------[ MEGAPHONE ]---------------"
-				@echo "|	CAN YOU SPEAK A BIT LOUDER, PLEASE?	|"
-				@echo "------------------------------------------"
+				@echo "--------------	[ BraiiiiiiinnnzzzZ ]	--------------"
+				@echo "	Freddy krueger could never wipe his own ass"
+				@echo "	and that's the true horror story."
+				@echo "\n"
 .phony		:	run clean fclean re score joke

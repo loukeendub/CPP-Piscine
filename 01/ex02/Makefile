@@ -6,13 +6,13 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/10/28 16:28:17 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/10/28 16:29:44 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	Moar_brainz
+NAME		=	hi_this_is_BRAIN
 
 CC			=	clang++
 
@@ -46,7 +46,7 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "-----------	[ Moar Brainz! ]	-----------"
-				@echo "	     NEIN! NEIN! NEIN! NEIN!"
+				@echo "--------------[ HI THIS IS BRAIN ]---------------"
+				@echo "	<enter joke here>"
 				@echo "\n"
 .phony		:	run clean fclean re score joke
