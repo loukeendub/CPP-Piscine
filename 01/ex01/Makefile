@@ -6,13 +6,13 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/10/27 19:09:13 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/10/28 16:01:37 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	Moar brainz!
+NAME		=	Moar_brainz
 
 CC			=	clang++
 

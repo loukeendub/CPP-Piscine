@@ -6,28 +6,21 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:10:44 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 14:01:19 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:07:04 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name)//	constructor
+Zombie::Zombie()//	constructor
 {
-	this->_name = name;
-	if (name == "Michael Meyers")
-		std::cout << "Zombie " << this->_name << " spawned in Haddonfield, Illinois" << std::endl;
-	else if (name == "Freddy Krueger")
-		std::cout << "Zombie " << this->_name << " spawned in Elm Street's kids deams" << std::endl;
-	else
-		std::cout << "Zombie " << this->_name << " spawned in Crystal Lake's Camp" << std::endl;
-		
+	std::cout << "A soldier of the Undead Nazi Army has appeard in the field" << std::endl;
 	return ;
 }
 
 Zombie::~Zombie()//	destructor
 {
-	std::cout << "Zombie " << this->_name << " returned to Hell with a huge explosion" << std::endl;
+	std::cout << "A soldier of the Nazi Army was shot in the head with a laser blaster" << std::endl;
 	return ;
 }
 
@@ -36,14 +29,15 @@ std::string	Zombie::getName()	const
 	return (this->_name);
 }
 
-void	Zombie::announce() const
+void		Zombie::setName(std::string name)
 {
-	std::cout << "<" << this->_name << "> BraiiiiiiinnnzzzZ..." << std::endl;
+	this->_name = name;
 	return ;
 }
 
-Zombie*	newZombie(std::string name)
+void	Zombie::announce() const
 {
-	Zombie	*newZombie = new Zombie(name);
-	return (newZombie);
+	std::cout << "<" << this->_name << "> GehirrrrrrrnnneeeE..." << std::endl;
+	std::cout << "	(which is 'BraiiiiiiinnnzzzZ...,' in German)" << std::endl;
+	return ;
 }
