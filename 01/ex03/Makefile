@@ -6,7 +6,7 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/10/28 17:29:01 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/10/28 17:31:29 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,7 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------	[ HI THIS IS BRAIN ]	---------------"
-				@echo "	If you ever need help learning C++,"
-				@echo "	I can give you some pointers."
-				@echo "	And you can keep me as a reference."
+				@echo "---------	[ Unnecessary Violence ]	----------"
+				@echo "	<enter joke here>"
 				@echo "\n"
 .phony		:	run clean fclean re score joke
