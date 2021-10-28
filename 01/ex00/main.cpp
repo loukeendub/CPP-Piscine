@@ -6,7 +6,16 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:10:19 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 10:10:22 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/28 10:25:15 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
+
+int	main()
+{
+	Zombie	undead;
+
+	
+	return (0);
+}

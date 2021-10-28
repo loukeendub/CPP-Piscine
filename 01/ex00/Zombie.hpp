@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:11:00 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 10:19:27 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/28 10:33:34 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ public:
 	~Zombie();
 
 	void	announce() const;
+	Zombie*	newZombie(std::string name);
+	void	randomChump(std::string name);
 };
 
 
