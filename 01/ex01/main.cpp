@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/28 10:10:19 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 13:28:08 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/10/28 13:19:26 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/10/28 13:58:36 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 
 int	main()
 {
-	Zombie	ghoul("Michael Meyers");
-	ghoul.announce();
-
-	randomChump("Jason");
-	
-	Zombie	*undead = newZombie("Freddy Krueger");
-	undead->announce();
-	delete undead;
 	
 	return (0);
 }

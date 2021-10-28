@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/28 10:10:19 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 13:28:08 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/10/28 10:11:00 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/10/28 13:24:14 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef ZOMBIE_HPP
+#define ZOMBIE_HPP
 
-int	main()
+//	INCLUDES :
+# include <iostream>
+
+//	CLASSES :
+class Zombie
 {
-	Zombie	ghoul("Michael Meyers");
-	ghoul.announce();
+private:
+	std::string	_name;
+public:
+	Zombie(std::string name);
+	~Zombie();
 
-	randomChump("Jason");
-	
-	Zombie	*undead = newZombie("Freddy Krueger");
-	undead->announce();
-	delete undead;
-	
-	return (0);
-}
+	std::string	getName()	const;
+
+	void		announce() const;
+};
+
+Zombie*		newZombie(std::string name);
+Zombie*		zombieHorde( int N, std::string name );
+
+#endif
