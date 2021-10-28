@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:10:44 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 12:33:39 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:14:30 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 Zombie::Zombie(std::string name)//	constructor
 {
 	this->_name = name;
-	std::cout << "Zombie " << this->_name << " spawned in Haddonfield, Illinois";
+	if (name == "Michael Meyers")
+		std::cout << "Zombie " << this->_name << " spawned in Haddonfield, Illinois" << std::endl;
+	else if (name == "Freddy Krueger")
+		std::cout << "Zombie " << this->_name << " spawned in Elm Street's kids deams" << std::endl;
+	else
+		std::cout << "Zombie " << this->_name << " spawned in Crystal Lake's Camp" << std::endl;
+		
 	return ;
 }
 
@@ -29,13 +35,9 @@ std::string	Zombie::getName()	const
 {
 	return (this->_name);
 }
-	
-void	Zombie::setName(std::string name)
-{
-
-}
 
 void	Zombie::announce() const
 {
+	std::cout << "<" << this->_name << "> BraiiiiiiinnnzzzZ..." << std::endl;
 	return ;
 }

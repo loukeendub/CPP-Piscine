@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:11:00 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 12:17:06 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/28 12:43:53 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ public:
 	~Zombie();
 
 	std::string	getName()	const;
-	void		setName(std::string name);
 
 	void		announce() const;
 };

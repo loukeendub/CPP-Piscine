@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 10:10:19 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 12:23:50 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:15:29 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	main()
 {
-	Zombie	ghoul("Michael Meyers");
-	randomChump("Jason");
-	Zombie	*undead = newZombie("Freddy Krueger");
+	Zombie	ghoul("Michael Meyers");// using constructor/destructor
+	ghoul.announce();
+
+	randomChump("Jason");//	using randomChump()
+	
+	Zombie	*undead = newZombie("Freddy Krueger");//	using heap memory allocation
 	undead->announce();
-	std::cout << "Zombie " << undead->getName() << " returned to Elm Street" << std::endl;
-	delete undead;	
+	delete undead;//	free heap mem allocation
 	
 	return (0);
 }
