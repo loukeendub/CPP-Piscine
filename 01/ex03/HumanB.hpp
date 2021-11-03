@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 17:36:37 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/10/28 17:58:01 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/03 09:12:50 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 
 //	INCLUDES
 # include <iostream>
+# include "Weapon.hpp"
 
 //	CLASS
 class HumanB
 {
 private:
-	/* data */
+	Weapon	_weaponB;
+	std::string	__nameB;
 public:
-	HumanB(/* args */);
+	HumanB(std:string name);
 	~HumanB();
+
+	void	attackB();
+	void	setWeapon();
 };
 
 #endif
