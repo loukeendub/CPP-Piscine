@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 17:31:43 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/03 09:34:26 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/11/03 13:03:06 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ int	main()
 		club.setType("rubber chicken");
 		bob.attack();
 	}
+
 	{
 		Weapon        club = Weapon("crude spiked club");
 		HumanB jim("Jim");
 		jim.setWeapon(club);
 		jim.attack();
-		club.setType("Grandpa's walking stick"); jim.attack();
+		club.setType("walking stick stolen from Granpa"); jim.attack();
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 17:37:20 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/03 09:57:55 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/11/03 13:13:35 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,31 @@
 
 HumanB::HumanB(std::string name)//	constructor
 {
-	//	construction message
+	this->_name = name;
+	this->isArmed = false;
+
+	std::cout << this->_name << " has joined the battle." << std::endl;
 	return ;
 }
 
 HumanB::~HumanB()//	destructor
 {
-	//	destruction message
+	std::cout << this->_name << " has lost the battle, but not the war. He'll come back!" << std::endl;
 	return ;
 }
 
-void	HumanB::attackB()
+void	HumanB::attack()
 {
+	if (this->isArmed)
+		std::cout << this->_name << " attacks the enemy with a " << this->_weapon->getType() << std::endl;
+	else
+		std::cout << this->_name << " is unarmed. He attacks with his famous IRON FIST" << std::endl;
 	return ;
 }
 
-void	Human::setWeapon()
+void	HumanB::setWeapon(Weapon& type)
 {
-	//	must determine if HumanB has a weapon randomically
-	//	if HumanB has it
-	//		sets the weapon type
-	//	else
-	//		sets the weapon type to "bare hands" status
-	return ;
+	srand(time(0));
+	this->isArmed = rand() %2;
+	this->_weapon = &type;
 }

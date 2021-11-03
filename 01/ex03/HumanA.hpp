@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 17:35:15 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/03 09:12:31 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/11/03 12:32:07 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 class HumanA
 {
 private:
-	Weapon	_weaponA;
-	std::string	__nameA;
+	Weapon&	_weapon;
+	std::string	_name;
 public:
-	HumanA(std::string name, std:string type);
+	HumanA(std::string name, Weapon& type);
 	~HumanA();
 
-	void	attackA();//	displays "NAME attacks with his WEAPON_TYPE"
+	void	attack();//	displays "NAME attacks with his WEAPON_TYPE"
 };
 
 #endif
