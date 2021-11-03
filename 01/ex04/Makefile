@@ -6,13 +6,13 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/03 13:17:55 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/11/03 13:21:23 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	Unnecessary_violence
+NAME		=	replace
 
 CC			=	clang++
 
@@ -46,11 +46,7 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "---------	[ Unnecessary Violence ]	----------"
-				@echo "	Zombie Apocalypse has begun..."
-				@echo "	Man, it's hectic out there."
-				@echo "	I've killed like 6 zombies already."
-				@echo "	How's everyone else holding up?"
-				@echo "	Anyone know why they all have bags of candy?"
+				@echo "---------	[ Sed is for losers ]	----------"
+				@echo "	<enter joke here>"
 				@echo "\n"
 .phony		:	run clean fclean re score joke
