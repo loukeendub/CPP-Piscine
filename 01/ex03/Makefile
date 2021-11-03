@@ -47,6 +47,10 @@ score		:
 
 joke		: 
 				@echo "---------	[ Unnecessary Violence ]	----------"
-				@echo "	<enter joke here>"
+				@echo "	Zombie Apocalypse has begun..."
+				@echo "	Man, it's hectic out there."
+				@echo "	I've killed like 6 zombies already."
+				@echo "	How's everyone else holding up?"
+				@echo "	Anyone know why they all have bags of candy?"
 				@echo "\n"
 .phony		:	run clean fclean re score joke
