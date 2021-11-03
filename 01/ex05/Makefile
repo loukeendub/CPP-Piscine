@@ -6,13 +6,13 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/18 18:44:35 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/03 15:32:23 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/11/03 15:38:43 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	replace
+NAME		=	Karen
 
 CC			=	clang++
 
@@ -46,8 +46,7 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "---------	[ Sed is for losers ]	----------"
-				@echo "	Did you hear about the new river movie?"
-				@echo "		It's now streaming"
+				@echo "---------	[ Karen 2.0 ]	----------"
+				@echo "	<enter joke here>"
 				@echo "\n"
 .phony		:	run clean fclean re score joke
