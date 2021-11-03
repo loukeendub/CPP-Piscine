@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:35:41 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/03 15:43:47 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/03 19:25:25 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ private:
 	void	warning();
 	void	error();
 public:
-	Karen(/* args */);
+	Karen();
 	~Karen();
 
 	void complain( std::string level );
