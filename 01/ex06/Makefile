@@ -12,7 +12,7 @@
 
 #	ARGS
 
-NAME		=	Karen-filter
+NAME		=	karenFilter
 
 CC			=	clang++
 
