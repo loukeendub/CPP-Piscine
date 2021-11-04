@@ -28,13 +28,13 @@ int main(int argc, char** argv)
 	{
 	case 1:
 		karen.complain("debug");
-		break;
+		//break;
 	case 2:
 		karen.complain("info");
-		break;
+		//break;
 	case 3:
 		karen.complain("warning");
-		break;
+		//break;
 	case 4:
 		karen.complain("error");
 		break;
