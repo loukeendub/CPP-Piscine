@@ -12,7 +12,7 @@
 
 #	ARGS
 
-NAME		=	Karen
+NAME		=	Karen-filter
 
 CC			=	clang++
 
@@ -46,7 +46,7 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "---------	[ Karen 2.0 ]	----------"
-				@echo "	Yes, I am Karen. Yes, let me talk to your manager!"
+				@echo "---------	[ Karen-filter ]	----------"
+				@echo "	It's a Karen thing. You won't get it."
 				@echo "\n"
 .phony		:	run clean fclean re score joke
