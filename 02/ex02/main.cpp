@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:08:23 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 18:59:12 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:02:52 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ main( void )
 
 	std::cout << b << std::endl;
 
-	std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << "Min : " << Fixed::min( a, b ) << std::endl;
+	std::cout << "Max : " << Fixed::max( a, b ) << std::endl;
 
 	return 0;
 }

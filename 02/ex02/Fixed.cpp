@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:25 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 18:59:07 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:05:27 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ std::ostream& operator<<(std::ostream& output, const Fixed& fix)
 
 // member functions
 
-static Fixed& min(Fixed& a, Fixed& b)
+static Fixed& min(Fixed& a, const Fixed& b)
 {
 	if (a < b)
 		return (a);
 	return (b);
 }
 
-static Fixed& max(Fixed& a, Fixed& b)
+static Fixed& max(Fixed& a, const Fixed& b)
 {
 	if (a > b)
 		return (a);

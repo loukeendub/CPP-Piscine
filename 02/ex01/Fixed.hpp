@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:28:46 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 15:16:15 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:08:55 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Fixed
 		Fixed(const int ival);//				constr ex01
 		Fixed(const float fval);//				constr ex01
 		
-		Fixed& operator= (const Fixed& fix);//	operator
+		Fixed& operator = (const Fixed& fix);//	operator
 
 		~Fixed();//								destr
 
