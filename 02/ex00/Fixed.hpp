@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:28:46 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 12:52:09 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 18:31:31 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ class Fixed
 		int					_fixedValue;
 
 	public:
-		Fixed();//								constr
-		Fixed(const Fixed& fix);//				copy constr
-		Fixed& operator= (const Fixed& fix);//	operator
-		~Fixed();//								destr
+		Fixed();
+		Fixed(const Fixed& fix);
+		Fixed& operator= (const Fixed& fix);
+		~Fixed();
 
 		int		getRawBits() const;
 		void	setRawBits(int const raw);

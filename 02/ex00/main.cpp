@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:28:28 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 13:04:02 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 18:31:46 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int main()
 {
-	Fixed	a;//			constr call
-	Fixed	b(a);//	copy constr call
-	Fixed	c;//			constr call again (new instance to be managed by the operator)
+	Fixed	a;
+	Fixed	b(a);
+	Fixed	c;
 	
 	c = b;
 	std::cout <<  a.getRawBits() << std::endl;
