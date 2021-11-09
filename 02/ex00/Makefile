@@ -6,7 +6,7 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/09 11:28:05 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/11/09 12:39:07 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,6 @@ score		:
 
 joke		: 
 				@echo "---------	[ My First Orthodox Class ]	----------"
-				@echo "	<enter joke here>"
+				@echo "	You should always do whatever FLOATS your boat..."
 				@echo "\n"
 .phony		:	run clean fclean re score joke
