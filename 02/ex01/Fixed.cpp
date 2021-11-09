@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:25 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 15:45:05 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:58:59 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,13 @@ Fixed::Fixed(const float fval)
 float	Fixed::toFloat() const
 {
 	float	value;
-	value = (float)this->_fixedValue / (float)(1 << this->_bits);//this is wrong...
+
+//	Converting Fixed point to floating point format and vice versa.
+//	Read data from the registers in fixed-point format.
+//	Convert to floating-point.
+//	Perform floating-point arithmetic to process the data.
+//	Convert the result back to the fixed point format.
+//	Write the result back to the register
 
 	return (value);
 }
