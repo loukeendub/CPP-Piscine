@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:25 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 19:05:27 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 19:15:18 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,36 @@ std::ostream& operator<<(std::ostream& output, const Fixed& fix)
 //	EX02 IMPLEMENTATION :
 
 //	operators :
+
+bool	Fixed::operator > (const Fixed& fix)//	operator >
+{
+	return (this->_fixedValue > fix.getRawBits());
+}
+
+bool	Fixed::operator < (const Fixed& fix)//	operator <
+{
+	return (this->_fixedValue < fix.getRawBits());
+}
+
+bool	Fixed::operator >= (const Fixed& fix)//	operator >=
+{
+	return (this->_fixedValue >= fix.getRawBits());
+}
+
+bool	Fixed::operator <= (const Fixed& fix)//	operator <=
+{
+	return (this->_fixedValue <= fix.getRawBits());
+}
+
+bool	Fixed::operator == (const Fixed& fix)//	operator ==
+{
+	return (this->_fixedValue == fix.getRawBits());
+}
+
+bool	Fixed::operator != (const Fixed& fix)//	operator !=
+{
+	return (this->_fixedValue != fix.getRawBits());
+}
 
 // member functions
 
