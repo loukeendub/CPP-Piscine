@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:25 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 14:57:02 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:45:05 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Fixed& Fixed::operator= (const Fixed& fix)
 
 int		Fixed::getRawBits() const//  getter
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	//std::cout << "getRawBits member function called" << std::endl;
 	return (this->_fixedValue);
 }
 
@@ -73,7 +73,7 @@ Fixed::Fixed(const float fval)
 float	Fixed::toFloat() const
 {
 	float	value;
-	value = (float)this->_fixedValue / (float)(1 << this->_bits);
+	value = (float)this->_fixedValue / (float)(1 << this->_bits);//this is wrong...
 
 	return (value);
 }
@@ -84,4 +84,10 @@ int		Fixed::toInt() const
 	value = (int)(this->_fixedValue >> this->_bits);
 	
 	return(value);
+}
+
+std::ostream& operator<<(std::ostream& output, const Fixed& fix)
+{
+	output << fix.getRawBits();
+	return (output);
 }

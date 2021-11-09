@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:28:46 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 14:49:06 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:16:15 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ class Fixed
 		float	toFloat() const;
 		int		toInt() const;
 };
+
+std::ostream& operator<<(std::ostream& output, const Fixed& fix);
 
 # endif
