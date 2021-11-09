@@ -6,19 +6,19 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:35:17 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/03 19:35:23 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/04 12:27:40 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Karen.hpp"
 
-Karen::Karen()//	constr
+Karen::Karen()
 {
 	std::cout << "Karen has entered the room." << std::endl;
 	return ;
 }
 
-Karen::~Karen()//	destr
+Karen::~Karen()
 {
 	std::cout << "Karen has left the room." << std::endl;
 	return ;
@@ -55,8 +55,6 @@ void Karen::complain(std::string level)
 		std::cout << "Karen has nothing to complain about... For now!" << std::endl;
 	return ;
 }
-
-// PRIVATE
 
 void	Karen::debug()
 {

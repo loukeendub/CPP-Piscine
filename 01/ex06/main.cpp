@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/04 12:26:58 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/11/04 12:27:15 by lmarzano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "Karen.hpp"
 
@@ -28,13 +40,10 @@ int main(int argc, char** argv)
 	{
 	case 1:
 		karen.complain("debug");
-		//break;
 	case 2:
 		karen.complain("info");
-		//break;
 	case 3:
 		karen.complain("warning");
-		//break;
 	case 4:
 		karen.complain("error");
 		break;

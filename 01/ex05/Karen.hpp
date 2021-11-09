@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:35:41 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/03 19:25:25 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/04 12:28:07 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <iostream>
 
-// class
 class Karen
 {
 private:
