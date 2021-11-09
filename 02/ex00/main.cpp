@@ -6,7 +6,15 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:28:28 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 11:28:30 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/09 12:00:57 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Fixed.hpp"
+
+int main(int argc, char** argv)
+{
+	Fixed	fix;//	constr call
+
+	return (0);
+}
