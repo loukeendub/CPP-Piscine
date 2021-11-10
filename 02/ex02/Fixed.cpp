@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:30:25 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/10 16:44:48 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/10 17:39:24 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ Fixed::Fixed(const int ival)
 Fixed::Fixed(const float fval)
 {
 	//std::cout << "Float constructor called" << std::endl;
-	this->_fixedValue = (int)(roundf(fval * (1 << this->_bits)));
+	this->_fixedValue = (round(fval * (1 << this->_bits)));
 	return ;
 }
 
@@ -74,7 +74,7 @@ float	Fixed::toFloat() const
 {
 	float	value;
 
-	value = (float)this->_fixedValue / (float)(1 << this->_bits);
+	value = ((float)this->_fixedValue / (1 << this->_bits));
 	return (value);
 }
 
@@ -126,27 +126,35 @@ bool	Fixed::operator != (const Fixed& fix) const//						operator !=
 	return (this->_fixedValue != fix.getRawBits());
 }
 
-Fixed	Fixed::operator + (const Fixed& fix) const//							operator +
+Fixed	Fixed::operator + (const Fixed& fix) const//						operator +
 {
-	return (this->_fixedValue + fix.getRawBits());
+	Fixed	op;
+	op.setRawBits(this->_fixedValue + fix.getRawBits());
+	return (op);
 }
 
-Fixed	Fixed::operator - (const Fixed& fix) const//							operator -
+Fixed	Fixed::operator - (const Fixed& fix) const//						operator -
 {
-	return (this->_fixedValue - fix.getRawBits());
+	Fixed	op;
+	op.setRawBits(this->_fixedValue - fix.getRawBits());
+	return (op);
 }
 
-Fixed	Fixed::operator * (const Fixed& fix) const//							operator *
+Fixed	Fixed::operator * (const Fixed& fix) const//						operator *
 {
-	return (this->toFloat() * fix.toFloat());
+	Fixed	op;
+	op.setRawBits((this->_fixedValue * fix.getRawBits()) >> this->_bits);
+	return (op);
 }
 
-Fixed	Fixed::operator / (const Fixed& fix) const//							operator /
+Fixed	Fixed::operator / (const Fixed& fix) const//						operator /
 {
-	return (this->toFloat() / fix.toFloat());
+	Fixed	op;
+	op.setRawBits((this->_fixedValue << this->_bits) / fix.getRawBits());
+	return (op);
 }
 
-Fixed	Fixed::operator ++ ()//									operator (int)++
+Fixed	Fixed::operator ++ ()//												operator (int)++
 {
 	this->_fixedValue++;
 	return (*this);
