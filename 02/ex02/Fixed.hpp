@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:28:46 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/09 19:18:05 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/10 16:03:25 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,32 @@ class Fixed
 		int					_fixedValue;
 
 	public:
-		Fixed();//									constr
-		Fixed(const Fixed& fix);//					copy constr
+		Fixed();//										constr
+		Fixed(const Fixed& fix);//						copy constr
 
-		Fixed(const int ival);//					constr ex01
-		Fixed(const float fval);//					constr ex01
+		Fixed(const int ival);//						constr ex01
+		Fixed(const float fval);//						constr ex01
 		
-		Fixed& operator = (const Fixed& fix);//		operator
+		Fixed& operator = (const Fixed& fix);//			operator
 
-		bool	operator > (const Fixed& fix);//	operator >
-		bool	operator < (const Fixed& fix);//	operator <
-		bool	operator >= (const Fixed& fix);//	operator >=
-		bool	operator <= (const Fixed& fix);//	operator <=
-		bool	operator == (const Fixed& fix);//	operator ==
-		bool	operator != (const Fixed& fix);//	operator !=
+		bool	operator > (const Fixed& fix) const;//	operator >
+		bool	operator < (const Fixed& fix) const;//	operator <
+		bool	operator >= (const Fixed& fix) const;//	operator >=
+		bool	operator <= (const Fixed& fix) const;//	operator <=
+		bool	operator == (const Fixed& fix) const;//	operator ==
+		bool	operator != (const Fixed& fix) const;//	operator !=
 
-		//	operator +
-		//	operator -
-		//	operator *
-		//	operator /
+		Fixed	operator + (const Fixed& fix) const;//	operator +
+		Fixed	operator - (const Fixed& fix) const;//	operator -
+		Fixed	operator * (const Fixed& fix) const;//	operator *
+		Fixed	operator / (const Fixed& fix) const;//	operator /
 
-		//	operator (int)++
-		//	operator ++(int)
-		//	operator (int)--
-		//	operator --(int)
+		Fixed	operator ++ ();//						operator (int)++
+		Fixed	operator ++ (int);//					operator ++(int)
+		Fixed	operator -- ();//						operator (int)--
+		Fixed	operator -- (int);//					operator --(int)
 
-		~Fixed();//									destr
+		~Fixed();//										destr
 
 		int		getRawBits() const;
 		void	setRawBits(int const raw);
@@ -56,8 +56,8 @@ class Fixed
 		float	toFloat() const;
 		int		toInt() const;
 
-		static Fixed& min(Fixed& a, const Fixed& b);
-		static Fixed& max(Fixed& a, const Fixed& b);
+		const static Fixed& min(const Fixed& a, const Fixed& b);
+		const static Fixed& max(const Fixed& a, const Fixed& b);
 };
 
 std::ostream& operator<<(std::ostream& output, const Fixed& fix);
