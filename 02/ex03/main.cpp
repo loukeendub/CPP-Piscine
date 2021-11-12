@@ -10,9 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include <iostream>
+#include "Point.hpp"
 
-int    main()
+bool	bsp(const Point& a, const Point& b, const Point& c);
+
+int		main()
 {
+	Point	a(0,0);
+	Point	b(42, 0);
+	Point	c(21, 12);
+
+	int		x = 0;
+	int		y = 0;
+
+	std::cout << "Triangle vertices at pos :" << std::endl;
+	std::cout << "A(0, 0) B(42, 0) C(21, 12)" << std::endl;
+
+	Point	rdm(x, y);
+
+	//	make a function to randomize x and y values
+	
+	std::cout << "point (" << x << ", " << y << ") ";
+	std::cout << (int)bsp(a, b, c, rdm) << std::endl;
 	return (0);
 }

@@ -47,6 +47,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ BSP ]	---------------------"
-				@echo "	<Enter Joke Here>"
+				@echo "	What did the triangle say to the circle?"
+				@echo "	**“You’re pointless.”**"
 				@echo "\n"
 .phony		:	run clean fclean re score joke

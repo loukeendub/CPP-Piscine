@@ -14,6 +14,7 @@
 # define POINT_HPP
 
 # include <iostream>
+# include <cmath>
 # include "Fixed.hpp"
 
 class Point
@@ -25,13 +26,14 @@ private:
 public:
 	Point();
 	Point(const Point& p);
-	Point(const float a, const float b);
+	Point(const float& x, const float& y);
+	Point(const Fixed& x, const Fixed& y);
 	~Point();
 
 	Point& operator = (const Point& p);
 
-	int		getValue() const;
-	void	setValue(int const value);
+	Fixed	getY(void) const;
+	Fixed	getX(void) const;
 };
 
 #endif

@@ -16,6 +16,12 @@
 Point::Point() : _x(0), _y(0)
 {}
 
+Point::Point(const float x, const float y) : _x(x), _y(y)
+{}
+
+Point::Point(const Fixed& x, const Fixed& y) : _x(x), _y(y)
+{}
+
 Point::~Point()
 {}
 
@@ -25,14 +31,22 @@ Point::Point(const Point& p)
 	return ;
 }
 
-Point::Point(const float a, const float b)
-{
-	this->_x = a;
-	this->_y = b;
-	return ;
-}
-
 Point& Point::operator = (const Point& p)
 {	
-	return(*this);
+	Fixed const x = p.getX();
+	Fixed const y = p.getY();
+	_x.setRawBits(x.getRawBits());
+	_y.setRawBits(y.getRawBits());
+	return (*this);
 }
+
+Fixed	Point::getY(void) const
+{
+	return (_y);
+}
+
+Fixed	Point::getX(void) const
+{
+	return (_x);
+}
+
