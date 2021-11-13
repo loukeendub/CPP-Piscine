@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   bsp.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:46:31 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/10 17:47:17 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/13 22:24:33 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 #include "Fixed.hpp"
 
-int		setRandomPoint()
+int		setRandomPoint(int randomFactor)
 {
-	int	point;
+	int	point = 0;
 	srand(time(0));
 
-	point = rand() %100;
+	point = rand() %randomFactor;
 	return(point);
 }
 
-bool	bsp(const Point& a, const Point& b, const Point& c)
+bool	bsp(const Point a, const Point b, const Point c, const Point point)
 {
 	Fixed	first;
 	Fixed	second;

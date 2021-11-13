@@ -1,0 +1,882 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Bold;\f1\froman\fcharset0 Times-Roman;\f2\froman\fcharset0 Times-Italic;
+\f3\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red109\green109\blue109;\red234\green234\blue234;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c50196\c50196\c50196;\cssrgb\c93333\c93333\c93333;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa428\qc\partightenfactor0
+
+\f0\b\fs64 \cf0 \expnd0\expndtw0\kerning0
+Introduction to Fixed Point Number Representation\
+\pard\pardeftab720\sa398\qc\partightenfactor0
+
+\fs48 \cf0 CS61c Spring 2006\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart640 \trmarl1280 \tamarb640 \trmarr1280 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth2018\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl0 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1413\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs32 \cf0 Author:\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Hayden So\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart640 \trmarl1280 \tamarb640 \trmarr1280 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth2018\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl0 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1413\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Last Modified:\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 2/28/06\cell \lastrow\row
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 Introduction: Real numbers in Real world\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 In real life, we deal with real numbers -- numbers with fractional part. Most modern computer have native (hardware) support for 
+\f2\i floating point
+\f1\i0  numbers. However, the use of floating point is not necessarily the only way to represent fractional numbers. This article describes the fixed point representation of real numbers. The use of fixed point data type is used widely in digital signal processing (DSP) and game applications, where performance is sometimes more important than precision. As we will see later, fixed point arithmetic is much faster than floating point arithmetic.\
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 It All Starts With an Integer\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 Recall that a binary number:\
+\pard\pardeftab720\partightenfactor0
+\cf0 110101
+\fs26\fsmilli13333 \sub 2
+\fs32 \nosupersub \
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 represents the value:\
+1 * 2
+\fs26\fsmilli13333 \super 5
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super 4
+\fs32 \nosupersub  + 0 * 2
+\fs26\fsmilli13333 \super 3
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super 2
+\fs32 \nosupersub  + 0* 2
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub \
+= 32 + 16 + 4 + 1\
+= 53
+\fs26\fsmilli13333 \sub 10
+\fs32 \nosupersub \
+Now, if we divide the number 53 by 2, we know the the result should be 26.5. However, how do we represent it if we only had integer representations?\
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 The Binary Point\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 The key to represent fractional numbers, like 26.5 above, is the concept of 
+\f2\i binary point
+\f1\i0 . A binary point is like the decimal point in a decimal system. It acts as a divider between the integer and the fractional part of a number.\
+In a decimal system, a decimal point denotes the position in a numeral that the coefficient should multiply by 10
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub  = 1. For example, in the numeral 26.5, the coefficient 6 has a weight of 10
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub  = 1. But what happen to the 5 to the right of decimal point? We know from our experience, that it carries a weight of 10
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub . We know the numeral "26.5" represents the value "twenty six and a half" because\
+\pard\pardeftab720\partightenfactor0
+\cf0 2 * 10
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub  + 6 * 10
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub  + 5 * 10
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub  = 26.5\
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 The very same concept of decimal point can be applied to our binary representation, making a "binary point". As in the decimal system, a binary point represents the coefficient of the term 2
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub  = 1. All digits (or bits) to the left of the binary point carries a weight of 2
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub , 2
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub , 2
+\fs26\fsmilli13333 \super 2
+\fs32 \nosupersub , and so on. Digits (or bits) on the right of binary point carries a weight of 2
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub , 2
+\fs26\fsmilli13333 \super -2
+\fs32 \nosupersub , 2
+\fs26\fsmilli13333 \super -3
+\fs32 \nosupersub , and so on. For example, the number:\
+\pard\pardeftab720\partightenfactor0
+\cf0 11010.1
+\fs26\fsmilli13333 \sub 2
+\fs32 \nosupersub \
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 represents the value:\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx960
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1920
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx3840
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4800
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth1584\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6720
+\clvertalt \clshdrawnil \clwWidth1584\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7680
+\clvertalt \clshdrawnil \clwWidth1260\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 5
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 4
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 3
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 2
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -2
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -3
+\fs32 \nosupersub \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx960
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1920
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx3840
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4800
+\clvertalt \clshdrawnil \clwWidth1422\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth1584\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6720
+\clvertalt \clshdrawnil \clwWidth1584\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7680
+\clvertalt \clshdrawnil \clwWidth1260\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 ...\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 ...\cell \lastrow\row
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 = 1 * 2
+\fs26\fsmilli13333 \super 4
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super 3
+\fs32 \nosupersub  + 0 * 2
+\fs26\fsmilli13333 \super 2
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub  + 0* 2
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub \
+= 16 + 8 + 2 + 0.5\
+= 26.5\
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 Shifting Is The Key\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 A careful reader should now realize the bit pattern of 53 and 26.5 is exactly the same. The 
+\f2\i only
+\f1\i0  difference, is the position of binary point. In the case of 53
+\fs26\fsmilli13333 \sub 10
+\fs32 \nosupersub , there is "no" binary point. Alternatively, we can say the binary point is located at the far right, at position 0. (Think in decimal, 53 and 53.0 represents the same number.)\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx864
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1728
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2592
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx3456
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5184
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6048
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6912
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7776
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 5
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 4
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 3
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 2
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Binary Point\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -2
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -3
+\fs32 \nosupersub \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx864
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1728
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2592
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx3456
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5184
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6048
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6912
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7776
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 .\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell \lastrow\row
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 In the case of 26.5
+\fs26\fsmilli13333 \sub 10
+\fs32 \nosupersub , binary point is located one position to the 
+\f2\i left
+\f1\i0  of 53
+\fs26\fsmilli13333 \sub 10
+\fs32 \nosupersub :\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx864
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1728
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2592
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx3456
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5184
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6048
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6912
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7776
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 5
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 4
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 3
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 2
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super 0
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Binary Point\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -2
+\fs32 \nosupersub \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2
+\fs26\fsmilli13333 \super -3
+\fs32 \nosupersub \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx864
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1728
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2592
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx3456
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5184
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6048
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6912
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7776
+\clvertalt \clshdrawnil \clwWidth1416\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 .\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell \lastrow\row
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 Now, recall in class, we discuss shifting an integer to the right by 1 bit position is equivalent to dividing the number by 2. In the case of integer, since we don't have a fractional part, we simply cannot represent digit to the right of a binary point, making this shifting process an 
+\f2\i integer division
+\f1\i0 . However, it is simply a limitation of integer representations of binary number.\
+In general, mathematically, given a fixed binary point position, shifting the bit pattern of a number to the right by 1 bit 
+\f2\i always
+\f1\i0  divide the number by 2. Similarly, shifting a number to the left by 1 bit multiplies the number by 2.\
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 Fixed Point Number Representation\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 The shifting process above is the key to understand fixed point number representation. To represent a real number in computers (or any hardware in general), we can define a fixed point number type simply by implicitly 
+\f2\i fixing
+\f1\i0  the binary point to be at some position of a numeral. We will then simply adhere to this implicit convention when we represent numbers.\
+To define a fixed point type conceptually, all we need are two parameters:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+width of the number representation, and\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+binary point position within the number\
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 We will use the notation 
+\f3\fs26 \cb4 fixed<w,b>
+\f1\fs32 \cb1  for the rest of this article, where 
+\f3\fs26 \cb4 w
+\f1\fs32 \cb1  denotes the number of bits used as a whole (the Width of a number), and 
+\f3\fs26 \cb4 b
+\f1\fs32 \cb1  denotes the position of binary point counting from the least significant bit (counting from 0).\
+For example, 
+\f3\fs26 \cb4 fixed<8,3>
+\f1\fs32 \cb1  denotes a 8-bit fixed point number, of which 3 right most bits are fractional. Therefore, the bit pattern:\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth1959\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1080
+\clvertalt \clshdrawnil \clwWidth1959\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2160
+\clvertalt \clshdrawnil \clwWidth1959\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx3240
+\clvertalt \clshdrawnil \clwWidth1959\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth1959\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5400
+\clvertalt \clshdrawnil \clwWidth1959\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx6480
+\clvertalt \clshdrawnil \clwWidth1959\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7560
+\clvertalt \clshdrawnil \clwWidth1245\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell \lastrow\row
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 represents a real number:\
+\pard\pardeftab720\partightenfactor0
+\cf0 00010.110
+\fs26\fsmilli13333 \sub 2
+\fs32 \nosupersub \
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 = 1 * 2
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub \
+= 2 + 0.5 + 0.25\
+= 2.75\
+Note that on a computer, a bit patter can represents anything. Therefore the same bit pattern, if we "cast" it to another type, such as a 
+\f3\fs26 \cb4 fixed<8,5>
+\f1\fs32 \cb1  type, will represents the number:\
+\pard\pardeftab720\partightenfactor0
+\cf0 000.10110
+\fs26\fsmilli13333 \sub 2
+\fs32 \nosupersub \
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 = 1 * 2
+\fs26\fsmilli13333 \super -1
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super -3
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super -4
+\fs32 \nosupersub \
+= 0.5 + 0.125 + 0.0625\
+= 0.6875\
+If we treat this bit patter as integer, it represents the number:\
+\pard\pardeftab720\partightenfactor0
+\cf0 10110
+\fs26\fsmilli13333 \sub 2
+\fs32 \nosupersub \
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 = 1 * 2
+\fs26\fsmilli13333 \super 4
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super 2
+\fs32 \nosupersub  + 1 * 2
+\fs26\fsmilli13333 \super 1
+\fs32 \nosupersub \
+= 16 + 4 + 2\
+= 22\
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 Negative Numbers\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 So far we talked about positive numbers, but we do want to represent negative numbers, don't we? How do we represent fixed point negative numbers then?\
+In computer, we use 2's complement to represent negative numbers. One of the property of 2's complement numbers is that arithmetic operations of either positive of negative numbers are identical. It includes, addition, subtraction, and not surprisingly, shifting. We can divide negative 2's complement numbers by 2 via a simple 1 bit right shift with sign extension as we can do so with positive numbers.\
+Recall in the beginning of this article we discuss how fixed point numbers are simply a shifted version of an integer (by setting binary point to a non-zero position). Combining with the observation that shift operation applies to 2's complement negative number as well as positive numbers, we can easily see how we can represent negative number in fixed point: Use 2's complement.\
+As an illustration, below are all the numbers representable with 4-bits 2's complement:\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clmgf \clvertalt \clshdrawnil \clwWidth4778\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clmrg \clvertalt \clshdrawnil \clwWidth4778\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clmrg \clvertalt \clshdrawnil \clwWidth4778\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clmrg \clvertalt \clshdrawnil \clwWidth4778\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Bit Pattern\cell 
+\pard\intbl\itap1\cell 
+\pard\intbl\itap1\cell 
+\pard\intbl\itap1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Number Represented (n)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 n / 2\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -0.5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -2\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -1\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -3\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -1.5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -4\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -2\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -5\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -2.5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -6\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -3\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -7\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -3.5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -8\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 -4\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 7\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 3.5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 6\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 3\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 5\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2.5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 4\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 3\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1.5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0.5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \tamart160 \tamarb160 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx1440
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth894\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth9675\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx7200
+\clvertalt \clshdrawnil \clwWidth2507\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl160 \clpadb20 \clpadr160 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 0\cell \lastrow\row
+\pard\pardeftab720\sa320\partightenfactor0
+\cf0 Looking at this table, we can then easily realize we can represent the number -2.5 with bit pattern "1011", 
+\f2\i IF
+\f1\i0  we assume the binary point is at position 1.\
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 Pros and Cons of Fixed Point Number Representation\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 By now, you should find that fixed point numbers are indeed a close relative to integer representation. The two only differs in the position of binary point. In fact, you might even consider integer representation as a "special case" of fixed point numbers, where the binary point is at position 0. All the arithmetic operations a computer can operate on integer can therefore be applied to fixed point number as well.\
+Therefore, the benefit of fixed point arithmetic is that they are as straight-forward and efficient as integers arithmetic in computers. We can reuse all the hardware built to for integer arithmetic to perform real numbers arithmetic using fixed point representation. In other word, fixed point arithmetic comes for free on computers.\
+The disadvantage of fixed point number, is than of course the loss of range and precision when compare with floating point number representations. For example, in a 
+\f3\fs26 \cb4 fixed<8,1>
+\f1\fs32 \cb1  representation, our fractional part is only precise to a quantum of 0.5. We cannot represent number like 0.75. We can represent 0.75 with 
+\f3\fs26 \cb4 fixed<8,2>
+\f1\fs32 \cb1 , but then we loose range on the integer part.\
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 Using Fixed Point Number in C\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 C does not have native "type" for fixed point number. However, due to the nature of fixed point representation, we simply don't need one. Recall all arithmetics on fixed point numbers are the same as integer, we can simply reuse the integer type 
+\f3\fs26 \cb4 int
+\f1\fs32 \cb1  in C to perform fixed point arithmetic. The position of binary point only matters in cases when we print it on screen or perform arithmetic with different "type" (such as when adding 
+\f3\fs26 \cb4 int
+\f1\fs32 \cb1  to 
+\f3\fs26 \cb4 fixed<32,6>
+\f1\fs32 \cb1 ).\
+\pard\pardeftab720\sa428\partightenfactor0
+
+\f0\b\fs64 \cf0 Conclusion\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs32 \cf0 Fixed point is a simple yet very powerful way to represent fractional numbers in computer. By reusing all integer arithmetic circuits of a computer, fixed point arithmetic is orders of magnitude faster than floating point arithmetic. This is the reason why it is being used in many game and DSP applications. On the other hand, it lacks the range and precision that floating point number representation offers. You, as a programmer or circuit designer, must do the tradeoff.\
+}
