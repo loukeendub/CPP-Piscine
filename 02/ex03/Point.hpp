@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 17:43:57 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/10 18:03:49 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/13 22:11:14 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 class Point
 {
 private:
-	const Fixed _x;
-	const Fixed _y;
-	//	anything else you judge useful.
+	Fixed _x;
+	Fixed _y;
+	
 public:
 	Point();
 	Point(const Point& p);

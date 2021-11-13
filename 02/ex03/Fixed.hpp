@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 11:28:46 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/10 17:35:34 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/13 22:03:06 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ class Fixed
 		float	toFloat() const;
 		int		toInt() const;
 
+		static Fixed&		min(Fixed& a, Fixed& b);
+		static Fixed&		max(Fixed& a, Fixed& b);
 		const static Fixed& min(const Fixed& a, const Fixed& b);
 		const static Fixed& max(const Fixed& a, const Fixed& b);
 };
