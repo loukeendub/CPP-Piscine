@@ -11,7 +11,7 @@ int main()
 
 	//test 2
 	clap.attack("Mecha-Garfunkel");
-	clap.takeDamage(42);
+	clap.takeDamage(100);
 	clap.beRepaired(42);
 
 	return (0);
