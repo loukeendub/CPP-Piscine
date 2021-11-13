@@ -13,6 +13,15 @@
 #include "Point.hpp"
 #include "Fixed.hpp"
 
+int		setRandomPoint()
+{
+	int	point;
+	srand(time(0));
+
+	point = rand() %100;
+	return(point);
+}
+
 bool	bsp(const Point& a, const Point& b, const Point& c)
 {
 	Fixed	first;
