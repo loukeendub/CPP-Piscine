@@ -5,14 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/15 15:19:39 by lmarzano         ###   ########.fr        #
+#    Created: 2021/11/15 17:34:55 by lmarzano          #+#    #+#              #
+#    Updated: 2021/11/15 17:34:57 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
 #	ARGS
 
-NAME		=	T-800
+NAME		=	T1
 
 CC			=	clang++
 

@@ -1,22 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/15 17:35:20 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/11/15 17:35:20 by lmarzano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
 # include <iostream>
 # include "ClapTrap.hpp"
 
-class ScavTrap : ClapTrap
+class ScavTrap : public ClapTrap
 {
 private:
-    std::string	_name;
-	int			_hitPoints;
-	int			_energyPoints;
-	int			_attackDamage;
-    
-public:
-    ScavTrap(/* args */);
-    ~ScavTrap();
+	bool    gatekeeper;
 
-    void guardGate();
+public:
+	ScavTrap(std::string name);
+	~ScavTrap();
+
+	void    guardGate();
+	void	attack(std::string const& target);
+	
 };
 
 #endif
