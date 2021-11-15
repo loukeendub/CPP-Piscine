@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:27:46 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 17:31:42 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/15 18:40:04 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "[ I'LL BE BACK! ]" << std::endl;
+	std::cout << std::endl << "[ I'LL BE BACK! ]" << std::endl;
 	std::cout << "ClapTrap " << getName() << " was crashed with a hydraulic press." << std::endl;
 	return ;
 }
@@ -38,44 +38,40 @@ void	ClapTrap::attack(std::string const& target)
 {
 	std::cout << std::endl << "[ ASTA LA VISTA, BABY! ]" << std::endl;
 	std::cout << "ClapTrap " << getName() << " attacks " << target;
-	std::cout << ", causing " << getAD() << " points of damage!" << std::endl;
+	std::cout << ", causing " << getAD() << " damage points!" << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	int	tmpEP = 0;
 	std::cout << std::endl << "[ COME WITH ME IF YOU WANT TO LIVE! ]" << std::endl;
-	if (getEP() == 0)
-		std::cout << "ClapTrap " << getName() << " has been killed in the attempt of killing Sarah Connor." << std::endl;
-	else
-		std::cout << "ClapTrap " << getName() << " has been repaired." << std::endl;
-	std::cout << "He has recovered " << amount << " points of damage!" << std::endl;
+	std::cout << "ClapTrap " << getName() << " has been repaired." << std::endl;
+	std::cout << "He has recovered " << amount << " damage points!" << std::endl;
 
-	tmpEP = getEP() + amount;
+	this->_hitPoints += amount;
 
-	std::cout << getName() << "'s total Energy Points are now " << _energyPoints << std::endl;
+	std::cout << getName() << "'s total HPs are now " << getHP() << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	int tmpEP = 0;
 	std::cout << std::endl << "[ I KNOW NOW WHY YOU CRY, BUT IT'S SOMETHING I CAN NEVER DO ]" << std::endl;
 	std::cout << "ClapTrap " << getName() << " has been attacked! He gets " << amount << " points of damage!" << std::endl;
-
-	tmpEP = getEP() - amount;
-	if (tmpEP <= 0)
+	
+	setHP(_hitPoints - amount);
+	if ((this->_hitPoints) <= 0)
 	{
-		setEP(0);
+		setHP(0);
 		std::cout << "ClapTrap " << getName() << " got smashed." << std::endl;
 	}
-	std::cout << getName() << "'s total Energy Points are now " << getEP() << std::endl;
+	std::cout << getName() << "'s total HPs are now " << getHP() << std::endl;
 }
 
 //	ex01 IMPLEMENTATION :
 
 ClapTrap::ClapTrap(const ClapTrap& copy)
 {
-
+	*this = copy;
+	return ;
 }
 
 void ClapTrap::operator = (const ClapTrap &op)
@@ -103,23 +99,22 @@ void			ClapTrap::setAD(unsigned int ad)
 	this->_attackDamage = ad;
 }
 
-int				ClapTrap::getHP()
+int				ClapTrap::getHP() const
 {
 	return (this->_hitPoints);
 }
 
-int				ClapTrap::getEP()
+int				ClapTrap::getEP() const
 {
 	return (this->_energyPoints);
 }
 
-int				ClapTrap::getAD()
+int				ClapTrap::getAD() const
 {
 	return (this->_attackDamage);
 }
 
-std::string		ClapTrap::getName()
+std::string		ClapTrap::getName() const
 {
 	return (this->_name);
 }
-

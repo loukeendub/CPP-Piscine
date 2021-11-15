@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:27:41 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 17:32:09 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/15 18:42:55 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,12 @@ void	ClapTrap::attack(std::string const& target)
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	std::cout << std::endl << "[ COME WITH ME IF YOU WANT TO LIVE! ]" << std::endl;
-	if (this->_energyPoints == 0)
-		std::cout << "ClapTrap " << _name << " has been killed in the attempt of killing Sarah Connor." << std::endl;
-	else
-		std::cout << "ClapTrap " << _name << " has been repaired." << std::endl;
+	std::cout << "ClapTrap " << _name << " has been repaired." << std::endl;
 	std::cout << "He has recovered " << amount << " damage points!" << std::endl;
 
-	this->_energyPoints += amount;
+	this->_hitPoints += amount;
 
-	std::cout << _name << "'s total Energy Points are now " << _energyPoints << std::endl;
+	std::cout << _name << "'s total HPs are now " << _hitPoints << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
@@ -61,11 +58,11 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	std::cout << std::endl << "[ I KNOW NOW WHY YOU CRY, BUT IT'S SOMETHING I CAN NEVER DO ]" << std::endl;
 	std::cout << "ClapTrap " << _name << " has been attacked! He gets " << amount << " damage points!" << std::endl;
 
-	this->_energyPoints -= amount;
-	if (this->_energyPoints <= 0)
+	this->_hitPoints -= amount;
+	if (this->_hitPoints <= 0)
 	{
-		this->_energyPoints = 0;
+		this->_hitPoints = 0;
 		std::cout << "ClapTrap " << _name << " got smashed." << std::endl;
 	}
-	std::cout << _name << "'s total Energy Points are now " << _energyPoints << std::endl;
+	std::cout << _name << "'s total HPs are now " << _hitPoints << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:36:02 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 17:36:02 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/15 18:02:13 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ public:
 	void			setEP(unsigned int hp);
 	void			setAD(unsigned int hp);
 
-	int				getHP();
-	int				getEP();
-	int				getAD();
-	std::string		getName();
+	int				getHP() const;
+	int				getEP() const;
+	int				getAD() const;
+	std::string		getName() const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:35:20 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 17:35:20 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:55:06 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ private:
 	bool    gatekeeper;
 
 public:
+	ScavTrap();
+	ScavTrap(const ScavTrap& copy);
 	ScavTrap(std::string name);
 	~ScavTrap();
 
