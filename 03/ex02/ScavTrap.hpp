@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 17:34:27 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 19:24:50 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/11/15 17:35:20 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/11/15 17:55:06 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-int main()
+# include <iostream>
+# include "ClapTrap.hpp"
+
+class ScavTrap : public ClapTrap
 {
-	//T1 - TERMINATOR
-	std::cout << "{ T1 - TERMINATOR }" << std::endl;
-	ClapTrap	clap("T-800");
+private:
+	bool    gatekeeper;
 
-	//Test 1
-	clap.attack("Kyle Reese");
-	clap.takeDamage(7);
-	clap.beRepaired(39);
+public:
+	ScavTrap();
+	ScavTrap(const ScavTrap& copy);
+	ScavTrap(std::string name);
+	~ScavTrap();
 
-	//test 2
-	clap.attack("Sarah Connor");
-	clap.takeDamage(100);
-	clap.beRepaired(42);
+	void    guardGate();
+	void	attack(std::string const& target);
+	
+};
 
-	return (0);
-}
+#endif

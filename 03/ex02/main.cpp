@@ -6,12 +6,13 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:36:09 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 19:23:27 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/15 19:28:36 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
@@ -35,8 +36,21 @@ int main()
 	std::cout << "EP : " << trap.getEP() << std::endl;
 	std::cout << "AD : " << trap.getAD() << std::endl;
 	trap.attack("John Connor's Foster Parents");
-	trap.takeDamage(100);
-	trap.beRepaired(42);
+	trap.takeDamage(50);
+	trap.beRepaired(31);
+	trap.beRepaired(11);
+
+	//T3 - Rise of the Machines
+	std::cout << "{{{ T3 - RISE OF THE MACHINES }}}" << std::endl;
+	FragTrap	frag("T-X");
+
+	frag.highFivesGuys();
+	std::cout << "HP : " << frag.getHP() << std::endl;
+	std::cout << "EP : " << frag.getEP() << std::endl;
+	std::cout << "AD : " << frag.getAD() << std::endl;
+	frag.attack("John Connor's Resistance Lieutenants");
+	frag.takeDamage(300);
+	frag.beRepaired(42);
 
 	return (0);
 }

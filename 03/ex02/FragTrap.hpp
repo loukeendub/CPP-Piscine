@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 17:34:27 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 19:24:50 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/11/15 18:45:41 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/11/15 19:17:56 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+
+# include <iostream>
 #include "ClapTrap.hpp"
 
-int main()
+class FragTrap : public ClapTrap
 {
-	//T1 - TERMINATOR
-	std::cout << "{ T1 - TERMINATOR }" << std::endl;
-	ClapTrap	clap("T-800");
+private:
+    /* data */
+public:
+    FragTrap();
+    FragTrap(std::string name);
+    FragTrap(const FragTrap& copy);
+    ~FragTrap();
 
-	//Test 1
-	clap.attack("Kyle Reese");
-	clap.takeDamage(7);
-	clap.beRepaired(39);
+    void highFivesGuys();
+};
 
-	//test 2
-	clap.attack("Sarah Connor");
-	clap.takeDamage(100);
-	clap.beRepaired(42);
-
-	return (0);
-}
+#endif
