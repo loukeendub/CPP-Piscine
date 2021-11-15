@@ -5,7 +5,7 @@ int main()
 	ClapTrap	clap("T-800");
 
 	//test 1
-	clap.attack("T-1000");
+	clap.attack("T-850");
 	clap.takeDamage(7);
 	clap.beRepaired(39);
 

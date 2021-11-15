@@ -6,13 +6,13 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/10 17:41:29 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/11/15 15:24:41 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	a.out
+NAME		=	T-850
 
 CC			=	clang++
 
@@ -47,6 +47,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Serena, my love! ]	---------------------"
-				@echo "	<Enter joke here>"
+				@echo "	What do you get if you cross a robot with a tractor?"
+				@echo "		A trans-farmer."
 				@echo "\n"
 .phony		:	run clean fclean re score joke

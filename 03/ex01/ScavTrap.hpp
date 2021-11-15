@@ -4,13 +4,14 @@
 # include <iostream>
 # include "ClapTrap.hpp"
 
-class ScavTrap
+class ScavTrap : ClapTrap
 {
 private:
-//Name (Parameter of constructor)
-//Hitpoints (100)
-//Energy points (50)
-//attack damage (20)
+    std::string	_name;
+	int			_hitPoints;
+	int			_energyPoints;
+	int			_attackDamage;
+    
 public:
     ScavTrap(/* args */);
     ~ScavTrap();

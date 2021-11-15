@@ -6,13 +6,13 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/10 17:41:29 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/11/15 15:19:39 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	a.out
+NAME		=	T-800
 
 CC			=	clang++
 
@@ -47,6 +47,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Aaaaand...OPEN! ]	---------------------"
-				@echo "	<Enter joke here>"
+				@echo "	What name should you never call a robot?"
+				@echo "			Rusty."
 				@echo "\n"
 .phony		:	run clean fclean re score joke
