@@ -2,15 +2,15 @@
 
 int main()
 {
-	ClapTrap	clap("Simon");
+	ClapTrap	clap("T-800");
 
 	//test 1
-	clap.attack("Garfunkel");
+	clap.attack("T-1000");
 	clap.takeDamage(7);
 	clap.beRepaired(39);
 
 	//test 2
-	clap.attack("Mecha-Garfunkel");
+	clap.attack("Mr. T");
 	clap.takeDamage(100);
 	clap.beRepaired(42);
 
