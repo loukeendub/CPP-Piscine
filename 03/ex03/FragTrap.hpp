@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 17:35:20 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/16 12:32:35 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/11/15 18:45:41 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/11/16 13:14:00 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
 # include <iostream>
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class FragTrap : public virtual ClapTrap
 {
 private:
-	bool    gatekeeper;
-
+    /* data */
 public:
-	ScavTrap();
-	ScavTrap(const ScavTrap& copy);
-	ScavTrap(std::string name);
-	~ScavTrap();
+    FragTrap();
+    FragTrap(std::string name);
+    FragTrap(const FragTrap& copy);
+    ~FragTrap();
 
-	void    guardGate();
-	void	attack(std::string const& target);
-	
+    void highFivesGuys();
 };
 
 #endif

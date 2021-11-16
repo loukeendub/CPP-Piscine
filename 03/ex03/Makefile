@@ -6,7 +6,7 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/15 18:06:14 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/11/16 13:41:28 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		=	T-Genisys
 
 CC			=	clang++
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
 RM		=	rm -rf
 

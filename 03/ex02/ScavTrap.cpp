@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:35:14 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 18:36:37 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/16 13:47:24 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,18 @@ ScavTrap::ScavTrap(const ScavTrap& copy)
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << std::endl << "[ HAVE YOU SEEN THIS BOY? ]" << std::endl;
+	std::cout << std::endl << "[ WOLFIE IS FINE, HONEY, WOLFIE IS JUST FINE. WHERE ARE YOU? ]" << std::endl;
 	std::cout << "ScavTrap " << getName() << " was dropped inside a recipient of melting iron, along with all Cyberdyne Systems tech residues." << std::endl;
 	return ;
 }
 
+
+
 void    ScavTrap::guardGate()
 {
 	gatekeeper = true;
-	std::cout << "ScavTrap " << getName() << " has enterred in Gate Keeper mode" << std::endl;
+	std::cout << std::endl << "[ HAVE YOU SEEN THIS BOY?  ]" << std::endl;
+	std::cout << "ScavTrap " << getName() << " has entered in Gate Keeper mode" << std::endl;
 }
 void	ScavTrap::attack(std::string const& target)
 {

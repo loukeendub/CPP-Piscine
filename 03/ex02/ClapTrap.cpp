@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:27:46 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 18:40:04 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/16 12:04:00 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	std::cout << "ClapTrap " << getName() << " has been attacked! He gets " << amount << " points of damage!" << std::endl;
 	
 	setHP(_hitPoints - amount);
-	if ((this->_hitPoints) <= 0)
+	if ((getHP()) <= 0)
 	{
 		setHP(0);
 		std::cout << "ClapTrap " << getName() << " got smashed." << std::endl;

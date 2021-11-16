@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:35:20 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/16 12:32:35 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/11/16 13:13:12 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : public virtual ClapTrap
 {
 private:
 	bool    gatekeeper;
