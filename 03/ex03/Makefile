@@ -6,17 +6,17 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/10 17:41:29 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/11/16 13:41:28 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	a.out
+NAME		=	T-Genisys
 
 CC			=	clang++
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
 RM		=	rm -rf
 
@@ -47,6 +47,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Now it’s weird! ]	---------------------"
-				@echo "	<Enter joke here>"
+				@echo "	Why do robots never use bank cards?"
+				@echo "		They always pay with cache."
 				@echo "\n"
 .phony		:	run clean fclean re score joke

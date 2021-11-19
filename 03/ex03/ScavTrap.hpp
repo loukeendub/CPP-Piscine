@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 17:34:39 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 17:34:40 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/11/15 17:35:20 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/11/16 13:13:12 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
 # include <iostream>
+# include "ClapTrap.hpp"
 
-class ClapTrap
+class ScavTrap : public virtual ClapTrap
 {
 private:
-	std::string	_name;
-	int			_hitPoints;
-	int			_energyPoints;
-	int			_attackDamage;
+	bool    gatekeeper;
 
 public:
-	ClapTrap();
-	ClapTrap(std::string name);
-	~ClapTrap();
+	ScavTrap();
+	ScavTrap(const ScavTrap& copy);
+	ScavTrap(std::string name);
+	~ScavTrap();
 
+	void    guardGate();
 	void	attack(std::string const& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+	
 };
 
 #endif

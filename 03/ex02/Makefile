@@ -6,13 +6,13 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/10 17:41:29 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/11/15 18:05:19 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	a.out
+NAME		=	T3
 
 CC			=	clang++
 
@@ -47,6 +47,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Repetitive work ]	---------------------"
-				@echo "	<Enter joke here>"
+				@echo "	What do you get if you cross a robot with a rock band?"
+				@echo "		Heavy metal."
 				@echo "\n"
 .phony		:	run clean fclean re score joke

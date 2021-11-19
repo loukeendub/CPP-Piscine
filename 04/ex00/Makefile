@@ -5,15 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/15 17:34:55 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/15 17:34:57 by lmarzano         ###   ########.fr        #
+#    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
+#    Updated: 2021/11/16 16:49:43 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 #	ARGS
 
-NAME		=	T1
+NAME		=	a.out
 
 CC			=	clang++
 
@@ -42,13 +41,12 @@ fclean		:	clean
 run			:	$(NAME)
 
 score		:
-				@echo "-----------------[ CPP PISCINE 03 ]----------------"
+				@echo "-----------------[ CPP PISCINE 04 ]----------------"
 				@echo "|               powered by lmarzano               |"
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------------	[ Aaaaand...OPEN! ]	---------------------"
-				@echo "	What name should you never call a robot?"
-				@echo "			Rusty."
+				@echo "--------------------	[ Polymorphism ]	---------------------"
+				@echo "	<enter joke here>"
 				@echo "\n"
 .phony		:	run clean fclean re score joke

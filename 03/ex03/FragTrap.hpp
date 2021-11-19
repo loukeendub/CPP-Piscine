@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 17:34:39 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/11/15 17:34:40 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/11/15 18:45:41 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/11/16 13:14:00 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
 # include <iostream>
+#include "ClapTrap.hpp"
 
-class ClapTrap
+class FragTrap : public virtual ClapTrap
 {
 private:
-	std::string	_name;
-	int			_hitPoints;
-	int			_energyPoints;
-	int			_attackDamage;
-
+    /* data */
 public:
-	ClapTrap();
-	ClapTrap(std::string name);
-	~ClapTrap();
+    FragTrap();
+    FragTrap(std::string name);
+    FragTrap(const FragTrap& copy);
+    ~FragTrap();
 
-	void	attack(std::string const& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+    void highFivesGuys();
 };
 
 #endif
