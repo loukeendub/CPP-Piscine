@@ -6,13 +6,13 @@
 #    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/11/16 16:49:43 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/12/05 03:34:29 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	a.out
+NAME		=	heavyRain
 
 CC			=	clang++
 
