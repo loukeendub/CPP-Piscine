@@ -6,7 +6,7 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 01:15:54 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/05 03:23:06 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/12/05 05:21:06 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@ protected:
 public:
 	Animal();
 	Animal(const Animal& copy);
-	~Animal();
+	virtual	~Animal();
 	Animal&	operator = (const Animal &op);
 
-	void		makeSound()	const;
+	virtual void		makeSound()	const;
 	std::string	getType()	const;
 };
-
-
-
 
 #endif
