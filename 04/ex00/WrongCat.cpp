@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/05 03:46:05 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/05 04:01:37 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/12/05 03:55:57 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/12/05 04:02:13 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <WrongAnimal.hpp>
+#include <WrongCat.hpp>
 
-WrongAnimal::WrongAnimal() : type("Wrong Animal")
+WrongCat::WrongCat()
+{
+	this->type = "Wrong Cat";
+}
+
+WrongCat::~WrongCat()
 {}
 
-WrongAnimal::WrongAnimal(const WrongAnimal& copy)
+WrongCat::WrongCat(const WrongCat& copy)
 {
 	*this = copy;
 	return ;
 }
 
-WrongAnimal::~WrongAnimal()
-{}
-
-WrongAnimal&	WrongAnimal::operator = (const WrongAnimal &op)
+WrongCat& WrongCat::operator = (const WrongCat& op)
 {
 	if (this == &op)
 		return (*this);
@@ -32,12 +34,7 @@ WrongAnimal&	WrongAnimal::operator = (const WrongAnimal &op)
 	return (*this);
 }
 
-void	WrongAnimal::makeSound()	const
+void	WrongCat::makeSound()	const
 {
-	std::cout << "The " << this->type << " goes << WRONG MUHAHAHA! >>" << std::endl;
-}
-
-std::string	WrongAnimal::getType()	const
-{
-	return (this->type);
+	std::cout << "The " << this->type << " goes << WREOOOOOOOWNG! >>" << std::endl;
 }
