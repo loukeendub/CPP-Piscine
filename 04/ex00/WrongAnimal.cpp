@@ -6,11 +6,11 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 03:46:05 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/05 04:01:37 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/12/05 04:46:01 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <WrongAnimal.hpp>
+#include "WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal() : type("Wrong Animal")
 {}

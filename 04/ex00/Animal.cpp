@@ -6,11 +6,11 @@
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 01:19:10 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/05 03:50:07 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/12/05 04:45:34 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Animal.hpp>
+#include "Animal.hpp"
 
 Animal::Animal() : type("Animal")
 {}
