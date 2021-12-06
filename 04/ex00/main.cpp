@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 01:14:44 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/05 04:46:42 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/12/06 20:16:49 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int main()
 	meta->makeSound();
 	wrongmeta->makeSound();
 	k->makeSound();
+	
 	delete meta;
 	delete i;
 	delete j;

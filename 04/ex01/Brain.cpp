@@ -1,0 +1,30 @@
+#include "Brain.hpp"
+#include <iostream>
+
+Brain::Brain()
+{
+	std::cout << "brain was created." << std::endl;
+}
+
+Brain::~Brain()
+{
+	std::cout << "brain was destroyed." << std::endl;
+}
+
+Brain::Brain(const Brain& copy)
+{
+	*this = copy;
+}
+
+Brain&	Brain::operator = (const Brain& op)
+{
+	if (this == &op)
+		return (*this);
+	//	set class protected vars.
+	return (*this);
+}
+
+std::string*	Brain::getIdeas()
+{
+	return (this->ideas);
+}
