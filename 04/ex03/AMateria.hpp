@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Amateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/05 01:15:54 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/08 04:19:34 by lmarzano         ###   ########.fr       */
+/*   Created: 2021/12/08 04:28:34 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/12/08 04:37:39 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
 # include <iostream>
 
-class Animal
+class AMateria
 {
 protected:
-	std::string type;
+	std::string	_type;
 public:
-	Animal();
-	Animal(const Animal& copy);
-	virtual	~Animal();
-	Animal&	operator = (const Animal &op);
+	AMateria();
+	~AMateria();
+	AMateria(const AMateria& copy);
+	AMateria(std::string const & type);
+	AMateria& operator = (const AMateria& op);
 
-	virtual void		makeSound()	const;
-	std::string	getType()	const;
+	std::string const  & getType(); // returns the materia type
+
+	virtual AMateria*   clone() const = 0;
+	virtual void use(ICharacter& target);
 };
+
+AMateria::AMateria(/* args */)
+{
+}
+
+AMateria::~AMateria()
+{
+}
+
 
 #endif
