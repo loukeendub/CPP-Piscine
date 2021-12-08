@@ -3,37 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 04:35:01 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/08 05:16:05 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/12/08 21:36:19 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-AMateria()
+AMateria::AMateria()
 {}
 
-~AMateria()
+AMateria::~AMateria()
 {}
 
-AMateria(const AMateria& copy)
-{}
-
-AMateria(std::string const & type)
+AMateria::AMateria(const AMateria& copy)
 {
-	*this = 
+	*this = copy;
 }
 
-AMateria& operator = (const AMateria& op)
-{}
+AMateria::AMateria(std::string const & type)
+{
+	this->_type = type;
+}
 
-std::string const  & getType()
-{}
- // returns the materia type
-virtual AMateria*   clone() const = 0
-{}
+AMateria& AMateria::operator = (const AMateria& op)
+{
+	if (this == &op)
+		return (*this);
+	this->_type = op._type;
+	return (*this);
+}
 
-virtual void use(ICharacter& target)
+void AMateria::use(ICharacter& target)
 {}
