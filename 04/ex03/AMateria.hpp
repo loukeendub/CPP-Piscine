@@ -6,7 +6,7 @@
 /*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 04:28:34 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/08 21:36:03 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/12/08 23:23:30 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,5 @@ public:
 	virtual AMateria*   clone() const = 0;
 	virtual void use(ICharacter& target);
 };
-
-AMateria::AMateria(/* args */)
-{
-}
-
-AMateria::~AMateria()
-{
-}
-
 
 #endif

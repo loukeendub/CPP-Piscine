@@ -14,7 +14,7 @@ public:
 	Character(std::string const & name);
 	Character(const Character& copy);
 	~Character();
-	Character*	operator = (const Character& op);
+	Character&	operator = (const Character& op);
 
 	std::string const & getName()	const;
 	void				equip(AMateria* m);
