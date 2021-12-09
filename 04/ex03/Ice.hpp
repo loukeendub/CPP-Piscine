@@ -13,30 +13,22 @@
 #ifndef ICE_HPP
 # define ICE_HPP
 
-#include <iostream>
+# include <iostream>
+# include "AMateria.hpp"
 
 
 class Ice
 {
 protected:
-	std::string type;
+	std::string	type;
 public:
 	Ice();
 	~Ice();
 	Ice(const Ice& copy);
-	Ice&    operator = (const Ice& op);
+	Ice&			operator = (const Ice& op);
 
-	Ice*    clone();
-	virtual void use(ICharacter& target);
+	Ice*			clone();
+	virtual void	use(ICharacter& target);
 };
-
-Ice::Ice(/* args */)
-{
-}
-
-Ice::~Ice()
-{
-}
-
 
 #endif

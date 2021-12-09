@@ -14,25 +14,19 @@
 # define CURE_HPP
 
 # include <iostream>
+# include "AMateria.hpp"
 
 class Cure
 {
 protected:
-    std::string type;
+	std::string	type;
 public:
-    Cure();
-    ~Cure();
-    Cure(const Cure& copy);
-    Cure&   operator = (const Cure& op);
+	Cure();
+	~Cure();
+	Cure(const Cure& copy);
+	Cure&	operator = (const Cure& op);
 
-    Cure*   clone();
+	Cure*	clone();
 };
 
-Cure::Cure(/* args */)
-{
-}
-
-Cure::~Cure()
-{
-}
 #endif
