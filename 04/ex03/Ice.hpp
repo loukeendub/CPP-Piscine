@@ -13,22 +13,20 @@
 #ifndef ICE_HPP
 # define ICE_HPP
 
-# include <iostream>
+# include "ICharacter.hpp"
 # include "AMateria.hpp"
 
-
-class Ice
+class Ice : public AMateria
 {
-protected:
-	std::string	type;
-public:
-	Ice();
-	~Ice();
-	Ice(const Ice& copy);
-	Ice&			operator = (const Ice& op);
+	public:
+		Ice();
+		~Ice();
+		Ice(std::string const & type);
+		Ice(const Ice& copy);
+		Ice&		operator = (const Ice& op);
 
-	Ice*			clone();
-	virtual void	use(ICharacter& target);
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
 };
 
 #endif

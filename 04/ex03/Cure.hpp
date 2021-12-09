@@ -13,20 +13,20 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
-# include <iostream>
+# include "ICharacter.hpp"
 # include "AMateria.hpp"
 
-class Cure
+class Cure : public AMateria
 {
-protected:
-	std::string	type;
-public:
-	Cure();
-	~Cure();
-	Cure(const Cure& copy);
-	Cure&	operator = (const Cure& op);
+	public:
+		Cure();
+		~Cure();
+		Cure(std::string const & type);
+		Cure(const Cure& copy);
+		Cure&		operator = (const Cure& op);
 
-	Cure*	clone();
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
 };
 
 #endif

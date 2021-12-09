@@ -4,12 +4,14 @@ Character::Character() : name("Anonymous")
 {
 	for (int i = 0; i < 4; i++)
 		this->inventory[i] = NULL;
+		std::cout << "A new Character just connected: " << this->getName() << std::endl;
 }
 
 Character::Character(std::string const & name) : name(name)
 {
 	for (int i; i < 4; i++)
 		this->inventory[i] = NULL;
+		std::cout << "A new Character just connected: " << this->getName() << std::endl;
 }
 
 Character::Character(const Character& copy)
@@ -17,6 +19,7 @@ Character::Character(const Character& copy)
 	for (int i; i < 4; i++)
 		this->inventory[i] = NULL;
 	*this = copy;
+	std::cout << "The copy of a new Character just connected: " << this->getName() << std::endl;
 }
 
 Character::~Character()
@@ -26,6 +29,7 @@ Character::~Character()
 		if (this->inventory[i])
 			delete inventory[i];
 	}
+	std::cout << this->getName() << " disconnected." << std::endl;
 }
 
 Character&	Character::operator = (const Character& op)
@@ -53,16 +57,13 @@ std::string const & Character::getName()	const
 
 void	Character::equip(AMateria* m)
 {
-	int	stored = 0;
-	int	i = 0;
-	while (!stored || i < 4)
+	for (int i = 0; i < 4; i++)
 	{
-		if (!(this->inventory[i]))
+		if (!this->inventory[i])
 		{
 			this->inventory[i] = m;
-			stored = 1;
+			return ;
 		}
-		i++;
 	}
 }
 

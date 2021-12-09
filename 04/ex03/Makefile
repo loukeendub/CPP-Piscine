@@ -12,13 +12,13 @@
 
 #	ARGS
 
-NAME		=	MirrorsEdge
+NAME		=	Skyrim
 
 CC			=	clang++
 
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
 
-RM		=	rm -rf
+RM		=	rm -f
 
 #	FILES
 
@@ -47,6 +47,6 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Interface & recap ]	---------------------"
-				@echo "	<enter joke here>"
+				@echo "	Let Me Guess, Someone Stole Your Sweetroll?"
 				@echo "\n"
 .phony		:	run clean fclean re score joke

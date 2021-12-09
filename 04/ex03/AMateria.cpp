@@ -36,5 +36,10 @@ AMateria& AMateria::operator = (const AMateria& op)
 	return (*this);
 }
 
+std::string const  & AMateria::getType() const
+{
+	return (this->type);
+}
+
 void AMateria::use(ICharacter& target)
 {}
