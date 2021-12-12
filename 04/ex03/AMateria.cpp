@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 04:35:01 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/08 21:36:19 by loukeen          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "AMateria.hpp"
 
 AMateria::AMateria()
@@ -25,21 +13,21 @@ AMateria::AMateria(const AMateria& copy)
 
 AMateria::AMateria(std::string const & type)
 {
-	this->_type = type;
+	this->type = type;
 }
 
-AMateria& AMateria::operator = (const AMateria& op)
+AMateria& AMateria::operator = (const AMateria& origin)
 {
-	if (this == &op)
+	if (this == &origin)
 		return (*this);
-	this->_type = op._type;
+	this->type = origin.type;
 	return (*this);
 }
 
-std::string const  & AMateria::getType() const
+std::string const & AMateria::getType() const
 {
 	return (this->type);
 }
 
-void AMateria::use(ICharacter& target)
+void AMateria::use(ICharacter&)
 {}

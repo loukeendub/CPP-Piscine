@@ -2,7 +2,7 @@
 
 MateriaSource::MateriaSource()
 {
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 		this->storage[i] = NULL;
 }
 
@@ -17,14 +17,14 @@ MateriaSource::~MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource& copy)
 {
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 		this->storage[i] = NULL;
 	*this = copy;
 }
 
-MateriaSource&	MateriaSource::operator = (const MateriaSource& op)
+MateriaSource& MateriaSource::operator = (const MateriaSource& op)
 {
-	if (this == op)
+	if (this == &op)
 		return (*this);
 	for (int i = 0; i < 4; i++)
 	{
@@ -39,26 +39,30 @@ MateriaSource&	MateriaSource::operator = (const MateriaSource& op)
 	return (*this);
 }
 
-void	MateriaSource::learnMateria(AMateria* m)
+void MateriaSource::learnMateria(AMateria* m)
 {
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->storage[i])
 		{
 			this->storage[i] = m->clone();
+			std::cout << "Added <" << storage[i]->getType() << "> material on DS_storage slot [ " << i << " ]" << std::endl;
 			return ;
 		}
 	}
 }
 
-AMateria*	MateriaSource::createMateria(std::string const & type)
+AMateria* MateriaSource::createMateria(std::string const & type)
 {
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->storage[i])
 			return (NULL);
-		if (this->storage[i].getType() == type)
-			return (this->storage[i]->clone());
+		if (this->storage[i]->getType() == type)
+		{
+			return this->storage[i]->clone();
+			std::cout << "Created <" << storage[i]->getType() << "> material on storage slot [ " << i << " ]" << std::endl;
+		}
 	}
 	return (NULL);
 }

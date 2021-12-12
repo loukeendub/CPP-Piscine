@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
+#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/08 04:23:50 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/12/12 21:42:59 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	Skyrim
+NAME		=	mini_Skyrim
 
 CC			=	clang++
 
@@ -47,6 +47,8 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Interface & recap ]	---------------------"
-				@echo "	Let Me Guess, Someone Stole Your Sweetroll?"
+				@echo "		Let Me Guess, Someone Stole Your Sweetroll?"
+				@echo "		"
+				@echo "		  **try to use DIO as your Champion name**"
 				@echo "\n"
 .phony		:	run clean fclean re score joke

@@ -6,35 +6,59 @@
 
 int	main()
 {
-	std::cout << "--- [ Welcome to Dungeon Simulator ] ---" << std::endl;
+	std::string	name;
 
-	ImateriaSource*	source = new MateriaSource();
+	std::cout << "--- [ Welcome to Dungeon Simulator ] ---" << std::endl << std::endl;
+	std::cout << "What is the name of your Champion?" << std::endl;
+	std::getline(std::cin, name, '\n');// get name and assign to var name.
+	
+	IMateriaSource*	source = new MateriaSource();
 	Ice*			ice = new Ice();
 	Cure*			cure = new Cure();
+	Ice*			ice2 = new Ice("ICEBOLT");
+	Cure*			cure2 = new Cure("STIMPAK");	
 
+	std::cout << std::endl << "--- [  	 LEARN NEW MATERIALS   	] ---" << std::endl;
 	source->learnMateria(ice);
 	source->learnMateria(cure);
+	source->learnMateria(ice2);
+	source->learnMateria(cure2);
+	std::cout << "--- [  	  FINISHED LEARNING  	] ---" << std::endl << std::endl;
 
 	delete ice;
 	delete cure;
+	delete ice2;
+	delete cure2;
 
-	ICharacter*		Player = new Character("Dovahkiin");
+	ICharacter*		Champion = new Character(name);
+	ICharacter*		NPC = new Character("Dovahkiin");
 	ICharacter*		Enemy = new Character("Illia");
 	AMateria*		materia;
 
-	materia = source->createMateria("ice");
-	Player->equip(materia);
-	materia = source->createMateria("cure");
-	Player->equip(materia);
+	std::cout << std::endl << "--- [   LEARNING   ] ---" << std::endl;
+	materia = source->createMateria("snowball");
+	NPC->equip(materia);
+	materia = source->createMateria("healing potion");
+	Enemy->equip(materia);
+	materia = source->createMateria("ICEBOLT");
+	Champion->equip(materia);
+	materia = source->createMateria("STIMPAK");
+	Champion->equip(materia);
+	std::cout << "--- [ END LEARNING ] ---" << std::endl;
 
-	Player->use(0, *Enemy);
-	Player->use(1, *Enemy);
+	std::cout << std::endl << "--- [   USING   ] ---" << std::endl;
+	NPC->use(0, *Champion);
+	Enemy->use(0, *Champion);
+	Champion->use(0, *NPC);
+	Champion->use(1, *Enemy);
+	std::cout << "--- [ END USING ] ---" << std::endl << std::endl;
 
 	delete Enemy;
-	delete Player;
+	delete NPC;
+	delete Champion;
 	delete source;
 
-	std::cout << "--- [ End of the Simulation ] ---" << std::endl;
+	std::cout << std::endl << "--- [ End of the Simulation ] ---" << std::endl;
 
 	return (0);
 }
