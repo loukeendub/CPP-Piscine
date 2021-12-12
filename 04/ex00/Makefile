@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
+#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/05 03:34:29 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/12/12 22:01:06 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	heavyRain
+NAME		=	HeavyRain
 
 CC			=	clang++
 
@@ -47,6 +47,6 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Polymorphism ]	---------------------"
-				@echo "	<enter joke here>"
+				@echo "	             It's raining Cats and Dogs..."
 				@echo "\n"
 .phony		:	run clean fclean re score joke

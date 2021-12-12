@@ -6,7 +6,7 @@
 #    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/06 23:54:29 by loukeen          ###   ########.fr        #
+#    Updated: 2021/12/12 22:00:51 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,6 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Abstract Class ]	---------------------"
-				@echo "	<enter joke here>"
+				@echo "	                         DEJA VU?!?"
 				@echo "\n"
 .phony		:	run clean fclean re score joke

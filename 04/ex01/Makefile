@@ -6,7 +6,7 @@
 #    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/06 20:20:50 by loukeen          ###   ########.fr        #
+#    Updated: 2021/12/12 22:01:28 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,6 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ I don't want to set the world on fire ]	---------------------"
-				@echo "	<enter joke here>"
+				@echo "	                You look like food, smell like food, Dog - hungry"
 				@echo "\n"
 .phony		:	run clean fclean re score joke
