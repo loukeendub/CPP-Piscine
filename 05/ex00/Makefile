@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
+#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/12 22:25:13 by loukeen          ###   ########.fr        #
+#    Updated: 2021/12/14 19:45:07 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	mini_Bureaucrat
+NAME		=	gringott
 
 CC			=	clang++
 

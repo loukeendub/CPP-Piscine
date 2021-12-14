@@ -20,7 +20,8 @@ Brain&	Brain::operator = (const Brain& op)
 {
 	if (this == &op)
 		return (*this);
-	//	set class protected vars.
+	for (size_t i = 0; i < this->ideas->size(); i++)
+		this->ideas[i] = op.ideas[i];
 	return (*this);
 }
 

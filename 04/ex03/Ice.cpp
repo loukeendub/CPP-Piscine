@@ -2,7 +2,7 @@
 
 Ice::Ice()
 {
-	this->type = "snowball";
+	this->type = "ice";
 }
 
 Ice::~Ice()

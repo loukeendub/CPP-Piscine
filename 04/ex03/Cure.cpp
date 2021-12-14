@@ -2,7 +2,7 @@
 
 Cure::Cure()
 {
-	this->type = "healing potion";
+	this->type = "cure";
 }
 
 Cure::~Cure()
