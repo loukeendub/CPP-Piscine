@@ -25,8 +25,6 @@ Form& Form::operator = (const Form& op)
 {
 	if (this == &op)
 		return (*this);
-	this->signGrade = op.signGrade;
-	this->execGrade = op.execGrade;
 	this->sign = getSignStatus();
 	return (*this);
 }
