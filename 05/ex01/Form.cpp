@@ -16,7 +16,9 @@ execGrade(exec)
 
 Form::Form(const Form& copy)
 {
-	*this = copy;
+	*this = copy
+	this->signGrade = copy.signGrade;
+	this->execGrade = copy.execGrade;
 }
 
 Form::~Form()
