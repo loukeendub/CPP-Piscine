@@ -47,8 +47,8 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Form up, maggots! ]	---------------------"
-				@echo "       Did you hear about the bureaucrat who was a Platonist?"
+				@echo "                     Did you hear about the bureaucrat who was a Platonist?"
 				@echo ""
-				@echo "              They were really obsessed with forms."
+				@echo "                            They were really obsessed with forms."
 				@echo "\n"
 .phony		:	run clean fclean re score joke
