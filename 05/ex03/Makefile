@@ -6,13 +6,13 @@
 #    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/15 19:41:44 by loukeen          ###   ########.fr        #
+#    Updated: 2021/12/15 20:31:34 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	gringott_exec
+NAME		=	gringott_intern
 
 CC			=	clang++
 
@@ -46,8 +46,8 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------------	[ No, you need form 28B, not 28C... ]	---------------------"
-				@echo "      If the first person who answers the phone cannot answer your question,"
-				@echo "                            it's a bureaucracy"
+				@echo "--------------------	[ At least this beats coffee-making ]	---------------------"
+				@echo ""
+				@echo ""
 				@echo "\n"
 .phony		:	run clean fclean re score joke
