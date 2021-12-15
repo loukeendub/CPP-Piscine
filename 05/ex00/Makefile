@@ -47,6 +47,9 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Mommy, when I grow up, I want to be a bureaucrat! ]	---------------------"
-				@echo "	< enter joke here >"
+				@echo "                  How many bureaucrats does it take to screw in a light bulb?"
+				@echo ""
+				@echo "      Two. One to assure everyone that everything possible is being done while the other"
+				@echo "                       screws the bulb into the water faucet."
 				@echo "\n"
 .phony		:	run clean fclean re score joke
