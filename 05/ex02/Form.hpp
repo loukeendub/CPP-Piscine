@@ -55,7 +55,7 @@ class Form
 		void				signature(const Bureaucrat& signee);
 		void				execute(Bureaucrat const & executor) const;
 
-		void				getTarget() const;
+		std::string				getTarget() const;
 		void				setTarget(std::string target);
 		virtual void		Action() const = 0;
 };

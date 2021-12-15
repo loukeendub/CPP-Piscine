@@ -74,7 +74,7 @@ std::ostream& operator << (std::ostream& output, const Form& print)
 	return (output);
 }
 
-void	Form::getTarget() const
+std::string	Form::getTarget() const
 {
 	return (this->target);
 }
