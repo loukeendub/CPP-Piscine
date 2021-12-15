@@ -1,13 +1,13 @@
 #include "Form.hpp"
 
 Form::Form() :
-signed(false),
+sign(false),
 signGrade(150),
 execGrade(150)
 {}
 
 Form::Form(const std::string name, int grade, int exec) :
-signed(false),
+sign(false),
 name(name),
 signGrade(grade),
 execGrade(exec)
@@ -28,7 +28,7 @@ Form& Form::operator = (const Form& op)
 	this->name = op.name;
 	this->signGrade = op.signGrade;
 	this->execGrade = op.execGrade;
-	this->signed = getSignStatus();
+	this->sign = getSignStatus();
 	return (*this);
 }
 
@@ -39,7 +39,7 @@ const std::string	Form::getName() const
 
 bool	Form::getSignStatus() const
 {
-	return (this->signed);
+	return (this->sign);
 }
 
 int	Form::getSignGrade() const
@@ -57,7 +57,7 @@ void	Form::signature(const Bureaucrat& signee)
 	if (signee.getGrade() > signGrade)
 		throw GradeTooLowException();
 	else
-		this->signed = true;
+		this->sign = true;
 }
 
 std::ostream& operator << (std::ostream& output, const Form& print)

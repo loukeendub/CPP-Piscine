@@ -9,9 +9,10 @@ class Form
 {
 	private:
 		const std::string	name;
-		bool				signed;
+		bool				sign;
 		const int			signGrade;
 		const int			execGrade;
+		
 	public:
 		class GradeTooHighException : public std::exception
 		{
