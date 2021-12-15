@@ -62,11 +62,11 @@ void	Form::signature(const Bureaucrat& signee)
 
 std::ostream& operator << (std::ostream& output, const Form& print)
 {
-	output << "Form <" << print.getName() << "> is ready to be signed by a Bureaucrat of grade " << print.getSignGrade() << " or above." << std::endl;
+	output << "Form <" << print.getName() << "> is currently ";
 	if (print.getSignStatus())
-		output << "Form was signed successfully!" << std::endl;
+		output << "signed." << std::endl;
 	else
-		output << "Form could not be signed! Please check Bureaucrat's permission." << std::endl;
-	output << "Form <" << print.getName() << "> can only be executed by a Bureaucrat of grade  " << print.getExecGrade() << " or above." << std::endl;
+		output << "not signed." << std::endl;
+	output << "Form <" << print.getName() << "> can only be signed by grade " << print.getSignGrade() << " and executed by grade " << print.getExecGrade() << " or above." << std::endl;
 
 }
