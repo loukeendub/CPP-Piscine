@@ -1,12 +1,12 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm()
+RobotomyRequestForm::RobotomyRequestForm() :
 Form("Robotomy Request", 72, 45)
 {
 	this->setTarget("Tom Riddle");
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) :
 Form("Robotomy Request", 72, 45)
 {
 	this->setTarget(target);
