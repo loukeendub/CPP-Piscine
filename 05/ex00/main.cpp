@@ -15,7 +15,7 @@
 int	main()
 {
 	Bureaucrat	founder("Gringott", 1);
-	Bureaucrat	griphook();
+	Bureaucrat	griphook;
 
 	try
 	{
