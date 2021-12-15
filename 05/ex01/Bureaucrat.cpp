@@ -6,7 +6,7 @@
 /*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 23:07:51 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/15 11:30:03 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:10:02 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ Bureaucrat& Bureaucrat::operator = (const Bureaucrat& op)
 
 std::ostream& operator << (std::ostream& output, const Bureaucrat& print)
 {
-	output << "My name is " << print.getName() << ". I am Bureaucrat n." << print.getGrade() << " of the Gringotts Bank of Magic.";
+	output << "My name is " << print.getName() << ". I am Bureaucrat n." << print.getGrade() << " of the Gringotts Bank of Magic." << std::endl;
 	return (output);
 }
 
@@ -85,10 +85,10 @@ void	Bureaucrat::signForm(Form& form)
 	try
 	{
 		form.signature(*this);
-		std::cout << "Bureaucrat " << this->getName() << " signs form " << form.getName();
+		std::cout << "Bureaucrat " << this->getName() << " signs <" << form.getName() << "> form." << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << form.getName() << " form cannot be signed by Bureaucrat " << this->getName() << ". " << e.what() << std::endl;
+		std::cout << "<" << form.getName() << "> form cannot be signed by Bureaucrat " << this->getName() << ". " << e.what() << std::endl;
 	}
 }
