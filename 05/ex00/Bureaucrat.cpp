@@ -18,7 +18,9 @@ Bureaucrat::Bureaucrat() : grade(150)
 
 	std::cout << "Hi Bureaucrat, what's your name?" << std::endl;
 	std::getline(std::cin, tmp, '\n');
+	std::cout << "Your name is " << tmp << std::endl;
 	(std::string) this->name = tmp;
+	std::cout << "Your name is " << this->getName() << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
