@@ -48,6 +48,6 @@ score		:
 joke		: 
 				@echo "--------------------	[ No, you need form 28B, not 28C... ]	---------------------"
 				@echo "      If the first person who answers the phone cannot answer your question,"
-				@echo "                            it's a bureaucracy"
+				@echo "                            it's a bureaucracy."
 				@echo "\n"
 .phony		:	run clean fclean re score joke
