@@ -1,14 +1,15 @@
 #include "Form.hpp"
 
 Form::Form() :
+name("Blank paper"),
 sign(false),
 signGrade(150),
 execGrade(150)
 {}
 
 Form::Form(const std::string name, int grade, int exec) :
-sign(false),
 name(name),
+sign(false),
 signGrade(grade),
 execGrade(exec)
 {}
