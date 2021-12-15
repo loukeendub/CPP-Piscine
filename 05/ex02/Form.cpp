@@ -77,7 +77,7 @@ void	Form::execute(Bureaucrat const & executor) const
 	if (executor.getGrade() > this->execGrade)
 		throw GradeTooLowException();
 	else
-	Action();
+		Action();
 }
 
 std::ostream& operator << (std::ostream& output, const Form& print)

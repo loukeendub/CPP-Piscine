@@ -6,7 +6,7 @@
 /*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 23:07:51 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/15 15:10:02 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/12/15 20:15:14 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ Bureaucrat& Bureaucrat::operator = (const Bureaucrat& op)
 
 std::ostream& operator << (std::ostream& output, const Bureaucrat& print)
 {
-	output << "My name is " << print.getName() << ". I am Bureaucrat n." << print.getGrade() << " of the Gringotts Bank of Magic." << std::endl;
+	output << "< My name is " << print.getName() << ". I am Bureaucrat n." << print.getGrade() << " of the Gringotts Bank of Magic. >" << std::endl;
 	return (output);
 }
 
@@ -97,11 +97,11 @@ void	Bureaucrat::executeForm(const Form& form)
 {
 	try
 	{
+		std::cout << this->name << " tries to execute <" << form.getName() << ">." << std::endl;
 		form.execute(*this);
-		std::cout << this->name << " executes " << form.getName() << std::endl;
 	}
 	catch(std::exception & e)
 	{
-		std::cerr << this->name << " cannot execute " << form.getName() << " because " << e.what() << std::endl;
+		std::cerr << this->name << " cannot execute <" << form.getName() << ">. " << e.what() << std::endl;
 	}
 }

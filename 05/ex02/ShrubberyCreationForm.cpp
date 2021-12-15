@@ -54,4 +54,6 @@ void	ShrubberyCreationForm::Action() const
 	file << "     i_:_yi_;_y" << std::endl;
 	file << "==[[ I AM GROOT ]]==" << std::endl;
 	file.close();
+
+	std::cout << "File saved SUCCESSFULLY" << std::endl;
 }
