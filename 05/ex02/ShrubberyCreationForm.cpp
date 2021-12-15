@@ -14,10 +14,7 @@ Form("Shrubbery Creation", 145, 137)
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
 {
-	if (copy.getTarget() == "groot")
-		this->setTarget("groot");
-	else
-		this->setTarget(copy.getTarget());
+	this->setTarget(copy.getTarget());
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()

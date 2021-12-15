@@ -14,8 +14,6 @@ Form("Robotomy Request", 72, 45)
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy)
 {
-
-	else
 		this->setTarget(copy.getTarget());
 }
 
