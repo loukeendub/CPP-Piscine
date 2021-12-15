@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 23:07:51 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/14 23:28:58 by lmarzano         ###   ########.fr       */
+/*   Updated: 2021/12/15 10:39:57 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 Bureaucrat::Bureaucrat() : grade(150)
 {
-	const std::string	tmp;
+	std::string	tmp;
 
 	std::cout << "Hi Bureaucrat, what's your name?" << std::endl;
-	std::getline(std::cin, tmp, '\n');// get name and assign to var name.
-	this->name = tmp;
+	std::getline(std::cin, tmp, '\n');
+	(std::string) this->name = tmp;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
@@ -67,6 +67,7 @@ void	Bureaucrat::gradeIncrement()
 	if (this->grade <= 1)
 		throw GradeTooHighException();
 	this->grade++;
+	std::cout << this->getName() << " got promoted to grade " << this->getGrade() << ". Well done!" << std::endl;
 }
 
 void	Bureaucrat::gradeDecrement()
@@ -74,4 +75,5 @@ void	Bureaucrat::gradeDecrement()
 	if (this->grade >= 150)
 		throw GradeTooLowException();
 	this->grade--;
+	std::cout << this->getName() << " got degraded to grade " << this->getGrade() << ". Too bad." << std::endl;
 }
