@@ -92,3 +92,16 @@ void	Bureaucrat::signForm(Form& form)
 		std::cout << "<" << form.getName() << "> form cannot be signed by Bureaucrat " << this->getName() << ". " << e.what() << std::endl;
 	}
 }
+
+void	Bureaucrat::executeForm(const Form& form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->name << " executes " << form.getName() << std::endl;
+	}
+	catch(std::exception & e)
+	{
+		std::cerr << this->name << " cannot execute " << form.getName() << " because " << e.what() << std::endl;
+	}
+}

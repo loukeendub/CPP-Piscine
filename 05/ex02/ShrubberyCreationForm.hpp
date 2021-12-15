@@ -14,7 +14,6 @@ class ShrubberyCreationForm : public Form
 		ShrubberyCreationForm& operator = (const ShrubberyCreationForm& op);
 
 		void	Action() const;
-
 };
 
 #endif

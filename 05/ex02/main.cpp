@@ -11,28 +11,33 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int	main()
 {
-	Bureaucrat	founder("Gringott", 1);
-	Bureaucrat	employee("Griphook", 42);
-	Form		form1("Lestrange Vault visit request", 1, 1);
-	Form		form2("Sirius Black's personal items withdrawal", 42, 10);
-	Form		form3("Impossible-to-sign", 0, 1);
+	Bureaucrat				founder("Gringott", 1);
+	Bureaucrat				employee("Griphook", 50);
+	ShrubberyCreationForm	shrubbery();
+	RobotomyRequestForm		robotomy();
+	PresidentialPardonForm	pardon();
 
 	std::cout << std::endl << "--- [ WELCOME TO GRINGOTTS BANK OF MAGIC ] ---" << std::endl << std::endl;
 
 	try
 	{
 		//employee
-		std::cout << form2 << std::endl;
+		std::cout << shrubbery << std::endl;
 		std::cout << employee << std::endl;
-		employee.signForm(form2);
-		std::cout << form2 << std::endl;
+		employee.signForm(shrubbery);
+		std::cout << shrubbery << std::endl;
+		//execute
 
-		std::cout << form1 << std::endl;
-		employee.signForm(form1);
-		std::cout << form1 << std::endl;
+		std::cout << robotomy << std::endl;
+		employee.signForm(robotomy);
+		std::cout << robotomy << std::endl;
+		//execute
 	}
 	catch(const std::exception& e)
 	{
@@ -43,12 +48,12 @@ int	main()
 	{
 		// founder
 		std::cout << founder << std::endl;
-		founder.signForm(form1);
-		std::cout << form1 << std::endl;
+		//execute
 
-		std::cout << form3 << std::endl;
-		founder.signForm(form3);
-		std::cout << form3 << std::endl;
+		std::cout << pardon << std::endl;
+		founder.signForm(pardon);
+		std::cout << pardon << std::endl;
+		//execute
 	}
 	catch(const std::exception& e)
 	{
