@@ -14,12 +14,12 @@ signGrade(grade),
 execGrade(exec)
 {}
 
-Form::Form(const Form& copy)
-{
-	*this = copy
-	this->signGrade = copy.signGrade;
-	this->execGrade = copy.execGrade;
-}
+Form::Form(const Form& copy) :
+name(copy.getName()),
+sign(false),
+signGrade(copy.getSignGrade()),
+execGrade(copy.getExecGrade())
+{}
 
 Form::~Form()
 {}
