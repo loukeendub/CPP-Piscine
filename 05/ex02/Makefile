@@ -36,7 +36,7 @@ re			:	fclean all
 clean		:
 
 fclean		:	clean
-				@$(RM) $(NAME) *_shruberry
+				@$(RM) $(NAME) *_shrubbery
 
 run			:	$(NAME)
 
@@ -47,6 +47,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ No, you need form 28B, not 28C... ]	---------------------"
-				@echo "  "
+				@echo "      If the first person who answers the phone cannot answer your question,"
+				@echo "                            it's a bureaucracy"
 				@echo "\n"
 .phony		:	run clean fclean re score joke

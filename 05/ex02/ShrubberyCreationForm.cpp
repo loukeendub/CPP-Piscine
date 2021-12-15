@@ -32,7 +32,7 @@ void	ShrubberyCreationForm::Action() const
 {
 	std::ofstream	file;
 
-	file.open((this->getTarget() + "_shruberry").c_str(), std::ofstream::trunc);
+	file.open((this->getTarget() + "_shrubbery").c_str(), std::ofstream::trunc);
 	file << "	     .^. .  _" << std::endl;
 	file << "    /:||` | / ! ~  ," << std::endl;
 	file << "  , [   &    / z y'" << std::endl;
