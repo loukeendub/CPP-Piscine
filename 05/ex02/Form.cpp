@@ -60,20 +60,6 @@ void	Form::signature(const Bureaucrat& signee)
 		this->sign = true;
 }
 
-std::ostream& operator << (std::ostream& output, const Form& print)
-{
-	output << "Form <" << print.getName() << "> is currently ";
-	if (print.getSignStatus())
-		output << "signed." << std::endl;
-	else
-		output << "not signed." << std::endl;
-	if (print.getSignGrade() < 1)
-		output << "No One has a grade high enough to sign form <" << print.getName() << ">." << std::endl;
-	else if (print.getSignStatus() == false)
-		output << "Form <" << print.getName() << "> can only be signed by grade " << print.getSignGrade() << " and executed by grade " << print.getExecGrade() << " Bureaucrats." << std::endl;
-	return (output);
-}
-
 std::string	Form::getTarget() const
 {
 	return (this->target);
@@ -92,4 +78,18 @@ void	Form::execute(Bureaucrat const & executor) const
 		throw GradeTooLowException();
 	else
 	Action();
+}
+
+std::ostream& operator << (std::ostream& output, const Form& print)
+{
+	output << "Form <" << print.getName() << "> is currently ";
+	if (print.getSignStatus())
+		output << "signed." << std::endl;
+	else
+		output << "not signed." << std::endl;
+	if (print.getSignGrade() < 1)
+		output << "No One has a grade high enough to sign form <" << print.getName() << ">." << std::endl;
+	else if (print.getSignStatus() == false)
+		output << "Form <" << print.getName() << "> can only be signed by grade " << print.getSignGrade() << " and executed by grade " << print.getExecGrade() << " Bureaucrats." << std::endl;
+	return (output);
 }
