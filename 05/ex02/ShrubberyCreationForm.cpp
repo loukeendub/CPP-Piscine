@@ -3,7 +3,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm() :
 Form("Shrubbery Creation", 145, 137)
 {
-	this->setTarget("groot");
+	this->setTarget("Groot");
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :

@@ -19,9 +19,9 @@ int	main()
 {
 	Bureaucrat				founder("Gringott", 1);
 	Bureaucrat				employee("Griphook", 50);
-	ShrubberyCreationForm	shrubbery("Geeno");
-	RobotomyRequestForm		robotomy("Peeno");
-	PresidentialPardonForm	pardon("Deeno");
+	ShrubberyCreationForm	shrubbery("Groot");
+	RobotomyRequestForm		robotomy("Tom Riddle");
+	PresidentialPardonForm	pardon("Albus Dumbledore");
 
 	std::cout << std::endl << "--- [ WELCOME TO GRINGOTTS BANK OF MAGIC ] ---" << std::endl << std::endl;
 
@@ -32,12 +32,12 @@ int	main()
 		std::cout << employee << std::endl;
 		employee.signForm(shrubbery);
 		std::cout << shrubbery << std::endl;
-		//execute
+		employee.executeForm(shrubbery);
 
 		std::cout << robotomy << std::endl;
 		employee.signForm(robotomy);
 		std::cout << robotomy << std::endl;
-		//execute
+		employee.executeForm(robotomy);
 	}
 	catch(const std::exception& e)
 	{
@@ -48,12 +48,14 @@ int	main()
 	{
 		// founder
 		std::cout << founder << std::endl;
-		//execute
+		founder.executeForm(robotomy);
+		founder.executeForm(robotomy);
+		founder.executeForm(robotomy);
 
 		std::cout << pardon << std::endl;
 		founder.signForm(pardon);
 		std::cout << pardon << std::endl;
-		//execute
+		founder.executeForm(pardon);
 	}
 	catch(const std::exception& e)
 	{
