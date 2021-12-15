@@ -79,3 +79,16 @@ void	Bureaucrat::gradeDecrement()
 		throw GradeTooLowException();
 	this->grade++;
 }
+
+void	Bureaucrat::signForm(Form& form)
+{
+	try
+	{
+		form.signature(*this);
+		std::cout << "Bureaucrat " << this->getName() << " signs form " << form.getName();
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << "Form " << form.getName() << " cannot be signed by Bureaucrat " << this->getName() << ". " << e.what() << std::endl;
+	}
+}

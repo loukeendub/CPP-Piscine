@@ -35,7 +35,7 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("grade is too low.");
+					return ("Grade is too low.");
 				}
 		};
 
@@ -49,6 +49,7 @@ class Bureaucrat
 		int 				getGrade() const;
 		void				gradeIncrement();
 		void				gradeDecrement();
+		void				signForm(Form& form);
 };
 
 std::ostream& operator << (std::ostream& output, const Bureaucrat& print);

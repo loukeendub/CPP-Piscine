@@ -12,7 +12,7 @@
 
 #	ARGS
 
-NAME		=	gringott
+NAME		=	gringott_form
 
 CC			=	clang++
 
@@ -46,10 +46,9 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------------	[ Mommy, when I grow up, I want to be a bureaucrat! ]	---------------------"
-				@echo "                  How many bureaucrats does it take to screw in a light bulb?"
+				@echo "--------------------	[ Form up, maggots! ]	---------------------"
+				@echo "                     Did you hear about the bureaucrat who was a Platonist?"
 				@echo ""
-				@echo "      Two. One to assure everyone that everything possible is being done while the other"
-				@echo "                       screws the bulb into the water faucet."
+				@echo "                            They were really obsessed with forms."
 				@echo "\n"
 .phony		:	run clean fclean re score joke
