@@ -1,12 +1,12 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm()
+PresidentialPardonForm::PresidentialPardonForm() :
 Form("Presidential Pardon", 25, 5)
 {
 	this->setTarget("Albus Dumbledore");
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) :
 Form("Presidential Pardon", 25, 5)
 {
 	this->setTarget(target);
