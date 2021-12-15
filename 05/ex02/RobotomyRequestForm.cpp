@@ -32,7 +32,7 @@ void	RobotomyRequestForm::Action() const
 {
 	std::cout << "< UAAAAAAAARRGGGH > ... < UGHHH > ... < AAAAAAAAAAAAAHHHHHH >" << std::endl;
 	if (rand() % 2)
-		std::cout "Subject [ " << this->getTarget() << " ] has been robotomized SUCCESSFULLY" << std::endl;
+		std::cout << "Subject [ " << this->getTarget() << " ] has been robotomized SUCCESSFULLY" << std::endl;
 	else
-		std::cout "Subject [ " << this->getTarget() << " ] 's robotomization FAILED" << std::endl;
+		std::cout << "Subject [ " << this->getTarget() << " ] 's robotomization FAILED" << std::endl;
 }
