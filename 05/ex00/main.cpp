@@ -6,7 +6,7 @@
 /*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 23:07:56 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/15 10:45:46 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/12/15 11:26:56 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Exception occurred! " << e.what() << std::endl;
+		std::cout << std::endl << "[ WARNING ] : " << e.what() << std::endl << std::endl;
 	}
 	try
 	{
@@ -45,7 +45,7 @@ int	main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Exception occurred! " << e.what() << std::endl;
+		std::cout << std::endl << "[ WARNING ] : " << e.what() << std::endl << std::endl;
 	}
 
 	
