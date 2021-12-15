@@ -14,11 +14,11 @@
 
 Bureaucrat::Bureaucrat() : grade(150)
 {
-	std::string	tmp;
+	const std::string	tmp;
 
 	std::cout << "Hi Bureaucrat, what's your name?" << std::endl;
 	std::getline(std::cin, tmp, '\n');// get name and assign to var name.
-	this->name == tmp;
+	this->name = tmp;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
