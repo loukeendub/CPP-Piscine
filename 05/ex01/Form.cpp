@@ -68,5 +68,5 @@ std::ostream& operator << (std::ostream& output, const Form& print)
 	else
 		output << "not signed." << std::endl;
 	output << "Form <" << print.getName() << "> can only be signed by grade " << print.getSignGrade() << " and executed by grade " << print.getExecGrade() << " or above." << std::endl;
-
+	return (output);
 }
