@@ -19,9 +19,9 @@ int	main()
 {
 	Bureaucrat				founder("Gringott", 1);
 	Bureaucrat				employee("Griphook", 50);
-	ShrubberyCreationForm	shrubbery();
-	RobotomyRequestForm		robotomy();
-	PresidentialPardonForm	pardon();
+	ShrubberyCreationForm	shrubbery("Geeno");
+	RobotomyRequestForm		robotomy("Peeno");
+	PresidentialPardonForm	pardon("Deeno");
 
 	std::cout << std::endl << "--- [ WELCOME TO GRINGOTTS BANK OF MAGIC ] ---" << std::endl << std::endl;
 
