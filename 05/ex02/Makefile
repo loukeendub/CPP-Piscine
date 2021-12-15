@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
+#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/14 19:45:07 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/12/15 19:41:44 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	gringott_form
+NAME		=	gringott_exec
 
 CC			=	clang++
 
@@ -36,7 +36,7 @@ re			:	fclean all
 clean		:
 
 fclean		:	clean
-				@$(RM) $(NAME)
+				@$(RM) $(NAME) *_shruberry
 
 run			:	$(NAME)
 
@@ -46,9 +46,7 @@ score		:
 				@echo "-----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------------	[ Form up, maggots! ]	---------------------"
-				@echo "                     Did you hear about the bureaucrat who was a Platonist?"
-				@echo ""
-				@echo "                            They were really obsessed with forms."
+				@echo "--------------------	[ No, you need form 28B, not 28C... ]	---------------------"
+				@echo "  "
 				@echo "\n"
 .phony		:	run clean fclean re score joke
