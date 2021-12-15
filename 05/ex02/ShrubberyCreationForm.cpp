@@ -9,7 +9,7 @@ Form("Shrubbery Creation", 145, 137)
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) :
 Form("Shrubbery Creation", 145, 137)
 {
-	this->setTarget(target)
+	this->setTarget(target);
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
@@ -37,7 +37,7 @@ void	ShrubberyCreationForm::Action() const
 
 	file.open((this->getTarget() + "_shruberry").c_str(), std::ofstream::trunc);
 	file << "	     .^. .  _" << std::endl;
-	file << "    /: ||`\/ \~  ," << std::endl;
+	file << "    /: ||`\ / \ ~  ," << std::endl;
 	file << "  , [   &    / \ y'" << std::endl;
 	file << " {v':   `\   / `&~-," << std::endl;
 	file << "'y. '    |`   .  ' /" << std::endl;
@@ -48,7 +48,7 @@ void	ShrubberyCreationForm::Action() const
 	file << "  i `'`      `'` j" << std::endl;
 	file << "   i     __    ,j" << std::endl;
 	file << "    `%`~....~'&" << std::endl;
-	file << " <~o' /  \/` \-s," << std::endl;
+	file << " <~o' / \  /`\-s," << std::endl;
 	file << "  o.~'.  )(  r  .o ,." << std::endl;
 	file << " o',  %``\/``& : 'bF" << std::endl;
 	file << "d', ,ri.~~-~.ri , +h" << std::endl;
