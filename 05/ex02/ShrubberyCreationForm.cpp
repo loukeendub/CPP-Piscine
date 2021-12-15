@@ -37,20 +37,20 @@ void	ShrubberyCreationForm::Action() const
 
 	file.open((this->getTarget() + "_shruberry").c_str(), std::ofstream::trunc);
 	file << "	     .^. .  _" << std::endl;
-	file << "    /: ||`\ / \ ~  ," << std::endl;
-	file << "  , [   &    / \ y'" << std::endl;
-	file << " {v':   `\   / `&~-," << std::endl;
+	file << "    /:||` | / ! ~  ," << std::endl;
+	file << "  , [   &    / z y'" << std::endl;
+	file << " {v':   `S  / `&~-," << std::endl;
 	file << "'y. '    |`   .  ' /" << std::endl;
-	file << " \   '  .       , y" << std::endl;
+	file << " x  '  .       , y" << std::endl;
 	file << " v .        '     v" << std::endl;
 	file << " V  .~.      .~.  V" << std::endl;
 	file << " : (  0)    (  0) :" << std::endl;
 	file << "  i `'`      `'` j" << std::endl;
 	file << "   i     __    ,j" << std::endl;
 	file << "    `%`~....~'&" << std::endl;
-	file << " <~o' / \  /`\-s," << std::endl;
+	file << " <~o' {' || `}-s," << std::endl;
 	file << "  o.~'.  )(  r  .o ,." << std::endl;
-	file << " o',  %``\/``& : 'bF" << std::endl;
+	file << " o',  %``WW``& : 'bF" << std::endl;
 	file << "d', ,ri.~~-~.ri , +h" << std::endl;
 	file << "`oso' d`~..~`b 'sos`" << std::endl;
 	file << "     d`+ II +`b" << std::endl;
