@@ -9,10 +9,14 @@
 class Intern
 {
 	private:
-		/* data */
+		Form*	makeShrubbery(std::string target);
+		Form*	makeRobotomy(std::string target);
+		Form*	makePardon(std::string target);
 	public:
 		Intern();
+		Intern(const Intern& copy);
 		~Intern();
+		Intern& operator = (const Intern& op);
 
 		Form*	makeForm(std::string fname, std::string target);
 };
