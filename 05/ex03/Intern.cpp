@@ -42,7 +42,7 @@ Form*	Intern::makeForm(std::string fname, std::string target)
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (form == index[i])
+		if (fname == index[i])
 		{
 			form = (this->*template[i]) (target);
 			std::cout << "Intern SUCCEDED to create <" << index[i] << "> form." << std::endl;
