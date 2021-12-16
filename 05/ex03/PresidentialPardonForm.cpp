@@ -30,5 +30,5 @@ PresidentialPardonForm& PresidentialPardonForm::operator = (const PresidentialPa
 
 void	PresidentialPardonForm::Action() const
 {
-	std::cout << this->getTarget() << " has been officially pardoned by Zafod Beeblebrox" << std::endl << "** Hell yeah! It's a bloody crossover!!! **" << std::endl;
+	std::cout << this->getTarget() << " has been officially pardoned by Zafod Beeblebrox" << std::endl << "** Hell yeah! It's a bloody crossover!!! **" << std::endl << std::endl;
 }

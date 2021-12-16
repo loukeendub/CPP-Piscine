@@ -44,11 +44,11 @@ Form*	Intern::makeForm(std::string fname, std::string target)
 	{
 		if (fname == index[i])
 		{
-			form = (this->*template[i]) (target);
-			std::cout << "Intern SUCCEDED to create <" << index[i] << "> form." << std::endl;
+			form = (this->*templates[i]) (target);
+			std::cout << "Intern SUCCEDED to create <" << index[i] << "> form." << std::endl << std::endl;
 			return(form);
 		}
 	}
-	sd::cout << "Intern FAILED to create <" << fname << "> form. It's not in the template index." << std::endl;
+	std::cout << "Intern FAILED to create <" << fname << "> form. It's not in the template index." << std::endl << std::endl;
 	return (NULL);
 }
