@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 23:07:56 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/15 20:18:41 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/12/16 19:32:14 by lmarzano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	main()
 		std::cout << *form << std::endl;
 		employee.executeForm(*form);
 
+		delete form;
+
 		form = intern.makeForm("Robotomy Request", "Tom Riddle");
 		employee.signForm(*form);
 		std::cout << *form << std::endl;
@@ -53,6 +55,8 @@ int	main()
 		founder.executeForm(*form);
 		founder.executeForm(*form);
 
+		delete form;
+
 		form = intern.makeForm("Presidential Pardon", "Albus Dumbledore");
 		founder.signForm(*form);
 		std::cout << *form << std::endl;
@@ -65,6 +69,6 @@ int	main()
 
 		std::cout << std::endl << "--- [ THANK YOU FOR VISITING GRINGOTTS BANK OF MAGIC ] ---" << std::endl << std::endl;
 
-
+	delete form;
 	return (0);
 }

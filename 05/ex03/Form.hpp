@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/16 19:27:20 by lmarzano          #+#    #+#             */
+/*   Updated: 2021/12/16 19:35:02 by lmarzano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FORM_HPP
 # define FORM_HPP
 
@@ -43,7 +55,7 @@ class Form
 		Form();
 		Form(const std::string name, int grade, int exec);
 		Form(const Form& copy);
-		~Form();
+		virtual ~Form();
 		Form& operator = (const Form& op);
 
 		const std::string	getName() const;
