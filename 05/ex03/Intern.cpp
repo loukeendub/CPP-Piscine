@@ -1,40 +1,40 @@
 #include "Intern.hpp"
 
-Intern()
+Intern::Intern()
 {}
 
-Intern(const Intern& copy)
+Intern::Intern(const Intern& copy)
 {
 	(void)copy;
 }
 
-~Intern()
+Intern::~Intern()
 {}
 
-Intern& operator = (const Intern& op)
+Intern& Intern::operator = (const Intern& op)
 {
 	(void)op;
 	return (*this);
 }
 
-Form*	makeShrubbery(std::string target)
+Form*	Intern::makeShrubbery(std::string target)
 {
 	return (new ShrubberyCreationForm(target));
 }
 
-Form*	makeRobotomy(std::string target)
+Form*	Intern::makeRobotomy(std::string target)
 {
 	return (new RobotomyRequestForm(target));
 }
 
-Form*	makePardon(std::string target)
+Form*	Intern::makePardon(std::string target)
 {
 	return (new PresidentialPardonForm(target));
 }
 
 typedef Form* (Intern::*formMaker) (std::string target);
 
-Form*	makeForm(std::string fname, std::string target)
+Form*	Intern::makeForm(std::string fname, std::string target)
 {
 	Form*		form;
 	std::string	index		[3] = {"Shrubbery Creation",	"Robotomy Request",		"Presidential Pardon"};
