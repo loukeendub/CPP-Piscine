@@ -56,14 +56,16 @@ ScalarConversion::operator char() const
 
 ScalarConversion::operator float() const
 {
-	double	conv = static_cast<double>(*this);
+	double	conv = 0.0f;
+	double	conv += static_cast<double>(*this);
 	return (static_cast<float>(conv));
 }
 
 ScalarConversion::operator double() const
 {
 	char*	endptr;
-	double	conv = std::strtod(this->input.c_str(), &endptr);
+	double	conv = 0.0;
+	double	conv += std::strtod(this->input.c_str(), &endptr);
 	if (this->input.c_str() == endptr)
 		throw (ImpossibleException());	
 	return (conv);
