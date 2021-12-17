@@ -21,6 +21,8 @@ int main(int ac, char** av)
 	
 	ScalarConversion    sconv(av[1]);
 
+	std::cout << "sconv : " << sconv << std::endl;
+
 /* try char */
 	try
 	{

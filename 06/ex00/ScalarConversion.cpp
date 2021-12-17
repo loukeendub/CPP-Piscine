@@ -63,7 +63,7 @@ ScalarConversion::operator float() const
 	return (static_cast<float>(conv));
 }
 
-ScalarConversion::operator double() const
+ScalarConversion::operator double() const//	something wrong with returning value of this op. 
 {
 	char*	endptr;
 	double	conv = std::strtod(this->input.c_str(), &endptr);
