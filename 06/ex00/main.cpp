@@ -27,13 +27,7 @@ int main(int ac, char** av)
 	try
 	{
 		char	c = static_cast<char>(sconv);
-		std::cout << "char : ";
-		if (c < 48 || c > 57)
-		{
-			std::cout << "'" << c << "'" << std::endl;
-		}
-		else
-			std::cout << c << std::endl;
+		std::cout << "char : '" << c << "'" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
