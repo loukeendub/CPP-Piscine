@@ -24,16 +24,22 @@ RM		=	rm -f
 
 SRCS			=	*.cpp
 
+OBJS = $(SRCS:.cpp=.o)
+
 #	RULES
 
 all			:	run joke score
 
-$(NAME)		:	$(SRCS)
-				@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME)		:	$(OBJS)
+				@$(CC) $(CFLAGS) -I . -o $@ $(OBJS)
+
+%.o:%.cpp
+		$(CC) $(CFLAGS) -I . -o &@ -c $< 
 
 re			:	fclean all
 
 clean		:
+			$(RM) $(OBJS) $(NAME).dSYM result
 
 fclean		:	clean
 				@$(RM) $(NAME)
@@ -51,4 +57,8 @@ joke		:
 				@echo ""
 				@echo "                              NOT!"
 				@echo "\n"
+
+test		:	re
+				./test.sh
+
 .phony		:	run clean fclean re score joke
