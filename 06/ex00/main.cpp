@@ -6,7 +6,7 @@
 /*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:38:56 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/17 13:38:11 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/12/17 16:43:16 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int ac, char** av)
 	
 	ScalarConversion    sconv(av[1]);
 
-	std::cout << "sconv : " << sconv.getInput() << std::endl;
+	std::cout << "conv : " << sconv.getInput() << std::endl;
 
 /* try char */
 	try

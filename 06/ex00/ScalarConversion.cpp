@@ -1,4 +1,5 @@
 #include "ScalarConversion.hpp"
+#include <iostream>
 
 //	exceptions
 const char*	ScalarConversion::ImpossibleException::what() const throw()
