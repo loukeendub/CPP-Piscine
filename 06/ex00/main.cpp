@@ -6,11 +6,12 @@
 /*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:38:56 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/17 12:20:43 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/12/17 13:38:11 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <iomanip>
 #include "ScalarConversion.hpp"
 
 int main(int ac, char** av)
@@ -52,7 +53,7 @@ int main(int ac, char** av)
 	try
 	{
 		float	f = static_cast< float >(sconv);
-		std::cout << "float : " << f << std::endl;
+		std::cout << "float : " << f << "f" << std::endl;
 	}
 	catch(const std::exception& e)
 	{

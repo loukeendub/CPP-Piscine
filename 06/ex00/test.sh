@@ -10,4 +10,3 @@ mkdir -p result
 ./scalar_conversion '42.042' > 'result/42.042'
 ./scalar_conversion '4.2f' > 'result/4.2f'
 diff answer result
-rm -r result

@@ -38,26 +38,26 @@ ScalarConversion&	ScalarConversion::operator = (const ScalarConversion& op)
 
 ScalarConversion::operator int() const
 {
-	double	conv = static_cast< double >(*this);
-	if (isnan(conv) || !(std::numeric_limits< int >::min() <= conv && std::numeric_limits< int >::max() >= conv))
+	double	conv = static_cast<double>(*this);
+	if (isnan(conv) || !(std::numeric_limits<int>::min() <= conv && std::numeric_limits<int>::max() >= conv))
 		throw (ImpossibleException());
-	return (static_cast< int >(conv));
+	return (static_cast<int>(conv));
 }
 
 ScalarConversion::operator char() const
 {
-	int	conv = static_cast< int >(*this);
-	if (!(std::numeric_limits< char >::min() <= conv && std::numeric_limits< char >::max() >= conv))
+	int	conv = static_cast<int>(*this);
+	if (!(std::numeric_limits<char>::min() <= conv && std::numeric_limits<char>::max() >= conv))
 		throw (ImpossibleException());
 	if (conv < 32 || conv > 126)
 		throw (NotDisplayableException());
-	return (static_cast< char >(conv));
+	return (static_cast<char>(conv));
 }
 
 ScalarConversion::operator float() const
 {
-	double	conv = static_cast< double >(*this);
-	return (static_cast< float >(conv));
+	double	conv = static_cast<double>(*this);
+	return (static_cast<float>(conv));
 }
 
 ScalarConversion::operator double() const

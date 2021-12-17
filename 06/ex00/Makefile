@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
+#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/16 22:38:03 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/12/17 13:44:04 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC			=	clang++
 
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
 
-RM		=	rm -f
+RM		=	rm -rf
 
 #	FILES
 
@@ -32,15 +32,12 @@ OBJS = $(SRCS:.cpp=.o)
 all			:	joke run score
 
 $(NAME)		:	$(OBJS)
-				@$(CC) $(CFLAGS) -I . -o $@ $(OBJS)
-
-%.o:%.cpp
-		$(CC) $(CFLAGS) -I . -o &@ -c $< 
+				@$(CC) $(CFLAGS) $^ -o $@
 
 re			:	fclean all
 
 clean		:
-			@$(RM) $(OBJS) $(NAME).dSYM result
+			@$(RM) $(OBJS) result
 
 fclean		:	clean
 				@$(RM) $(NAME)
