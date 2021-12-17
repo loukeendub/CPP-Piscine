@@ -16,7 +16,7 @@ ScalarConversion::ScalarConversion()
 {}
 
 ScalarConversion::ScalarConversion(const char* input) :
-input(static_cast < std::string > (s))
+input(static_cast < std::string > (input))
 {}
 
 ScalarConversion::ScalarConversion(const ScalarConversion& copy)

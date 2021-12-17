@@ -35,7 +35,7 @@ int main(int ac, char** av)
 	try
 	{
 		int		i = static_cast< int >(sconv);
-		std::cout << "int : " << i << std::endl
+		std::cout << "int : " << i << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -46,7 +46,7 @@ int main(int ac, char** av)
 	try
 	{
 		float	f = static_cast< float >(sconv);
-		std::cout << "float : " << e.what() << std::endl;
+		std::cout << "float : " << f << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -57,7 +57,7 @@ int main(int ac, char** av)
 	try
 	{
 		double	d = static_cast< double >(sconv);
-		std::cout << "double : " << e.what() << std::endl;
+		std::cout << "double : " << d << std::endl;
 	}
 	catch(const std::exception& e)
 	{
