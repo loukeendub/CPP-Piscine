@@ -47,7 +47,7 @@ ScalarConversion::operator int() const
 ScalarConversion::operator char() const
 {
 	int	conv = static_cast<int>(*this);
-	if (conv <= std::numeric_limits<char>::min() || conv >= std::numeric_limits<char>::max()))
+	if (conv <= std::numeric_limits<char>::min() || conv >= std::numeric_limits<char>::max())
 		throw (ImpossibleException());
 	if (conv < 32 || conv > 126)
 		throw (NotDisplayableException());
