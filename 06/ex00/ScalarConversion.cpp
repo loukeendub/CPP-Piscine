@@ -40,7 +40,7 @@ ScalarConversion&	ScalarConversion::operator = (const ScalarConversion& op)
 ScalarConversion::operator int() const
 {
 	double	conv = static_cast<double>(*this);
-std::cout << "double conv int op :" << conv << std::endl;
+std::cout << "int conv done" << std::endl;//	DEBUG
 
 	if (isnan(conv) || conv <= std::numeric_limits<int>::min() || conv >= std::numeric_limits<int>::max())
 		throw (ImpossibleException());
@@ -50,7 +50,7 @@ std::cout << "double conv int op :" << conv << std::endl;
 ScalarConversion::operator char() const
 {
 	int	conv = static_cast<int>(*this);
-std::cout << "int conv char op :" << conv << std::endl;
+std::cout << "char conv done" << std::endl;//	DEBUG
 
 	if (conv <= std::numeric_limits<char>::min() || conv >= std::numeric_limits<char>::max())
 		throw (ImpossibleException());
@@ -63,7 +63,7 @@ ScalarConversion::operator float() const
 {
 	
 	double	conv = static_cast<double>(*this);
-std::cout << "double conv float op :" << conv << std::endl;
+std::cout << "float conv done" << std::endl;//	DEBUG
 
 	return (static_cast<float>(conv));
 }
@@ -71,8 +71,9 @@ std::cout << "double conv float op :" << conv << std::endl;
 ScalarConversion::operator double() const//	something wrong with returning value of this op. 
 {
 	char*	endptr;
-	double	conv = std::strtod(this->input.c_str(), &endptr);
-std::cout << "double conv double op :" << conv << std::endl;
+	double	conv = std::strtod(this->input.c_str(), &endptr);// this is where I lose data
+std::cout << "double INPUT : " << input << std::endl;//	DEBUG they should output the same value if float
+std::cout << "double conv  : " << conv << std::endl;//	DEBUG they should output  value.0 if int
 
 	if (this->input.c_str() == endptr)
 		throw (ImpossibleException());	
