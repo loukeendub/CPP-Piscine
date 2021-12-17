@@ -47,7 +47,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Serialization ]	---------------------"
-				@echo "               Here comes another funny module..."
+				@echo "   Wow, this is even more interesting than previous exercise"
 				@echo ""
 				@echo "                          NOT!"
 				@echo "\n"

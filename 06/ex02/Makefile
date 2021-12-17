@@ -12,7 +12,7 @@
 
 #	ARGS
 
-NAME		=	scalar_conversion
+NAME		=	identifyRT
 
 CC			=	clang++
 
@@ -46,9 +46,9 @@ score		:
 				@echo "      -----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------------	[ Scalar conversion ]	---------------------"
-				@echo "               Here comes another funny module..."
+				@echo "--------------------	[ Identify real type ]	---------------------"
+				@echo "      ...Really, there's nothing to enjoy about this project."
 				@echo ""
-				@echo "                              NOT!"
+				@echo "              Thank GOD it's the last exercise!"
 				@echo "\n"
 .phony		:	run clean fclean re score joke
