@@ -31,6 +31,8 @@ public:
 	operator char() const;
 	operator float() const;
 	operator double() const;
+
+	std::string			getInput() const;
 };
 
 #endif

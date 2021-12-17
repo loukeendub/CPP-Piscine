@@ -72,3 +72,8 @@ ScalarConversion::operator double() const//	something wrong with returning value
 		throw (ImpossibleException());	
 	return (conv);
 }
+
+std::string	ScalarConversion::getInput() const
+{
+	return (this->input);
+}
