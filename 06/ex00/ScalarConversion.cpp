@@ -59,7 +59,7 @@ ScalarConversion::operator char() const
 ScalarConversion::operator float() const
 {
 	
-	double	conv = static_cast<double>(this->input);
+	double	conv = static_cast<double>(*this);
 	return (static_cast<float>(conv));
 }
 
