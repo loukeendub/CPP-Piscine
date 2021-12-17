@@ -15,15 +15,9 @@ const char*	ScalarConversion::NotDisplayableException::what() const throw()
 ScalarConversion::ScalarConversion()
 {}
 
-ScalarConversion::ScalarConversion(const char* av)
-{
-	for (int i = 0; av[i]; i++)
-	{
-		if (av[i] == '.')
-			av[i + 2] = NULL;
-	}
-	this->input = static_cast<std::string>(av);
-}
+ScalarConversion::ScalarConversion(const char* input) :
+input(static_cast < std::string > (input))
+{}
 
 ScalarConversion::ScalarConversion(const ScalarConversion& copy)
 {
