@@ -15,8 +15,8 @@ const char*	ScalarConversion::NotDisplayableException::what() const throw()
 ScalarConversion::ScalarConversion()
 {}
 
-ScalarConversion::ScalarConversion(const char* input) :
-input(static_cast < std::string > (input))
+ScalarConversion::ScalarConversion(const char* av) :
+input(static_cast<std::string>(av))
 {}
 
 ScalarConversion::ScalarConversion(const ScalarConversion& copy)
