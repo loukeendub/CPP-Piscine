@@ -18,27 +18,31 @@ CC			=	clang++
 
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
 
-RM		=	rm -f
+RM			=	rm -rf
 
 #	FILES
 
-SRCS			=	*.cpp
+SRCS			=	< file names go here >
+
+OBJS = $(SRCS:.cpp=.o)
 
 #	RULES
 
-all			:	run joke score
+all			:	joke run score
 
-$(NAME)		:	$(SRCS)
-				@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME)		:	$(OBJS)
+				@$(CC) $(CFLAGS) $^ -o $@
 
 re			:	fclean all
 
 clean		:
+			@$(RM) $(OBJS) result
 
 fclean		:	clean
 				@$(RM) $(NAME)
 
 run			:	$(NAME)
+
 
 score		:
 				@echo "      -----------------[ CPP PISCINE 06 ]----------------"
