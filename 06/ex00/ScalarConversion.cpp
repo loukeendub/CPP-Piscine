@@ -42,7 +42,7 @@ ScalarConversion::operator int() const
 	double	conv = static_cast<double>(*this);
 std::cout << "double conv int op :" << conv << std::endl;
 
-	if (isnan(conv) || conv <= std::numeric_limits<char>::min() || conv >= std::numeric_limits<char>::max())
+	if (isnan(conv) || conv <= std::numeric_limits<int>::min() || conv >= std::numeric_limits<int>::max())
 		throw (ImpossibleException());
 	return (static_cast<int>(conv));
 }
