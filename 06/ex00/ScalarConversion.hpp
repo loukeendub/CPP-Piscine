@@ -22,7 +22,7 @@ public:
 			const char*	what() const throw();
 	};
 
-	ScalarConversion(const char* input);
+	ScalarConversion(const char* av);
 	ScalarConversion(const ScalarConversion& copy);
 	virtual	~ScalarConversion();
 
