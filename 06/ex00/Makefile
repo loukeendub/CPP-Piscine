@@ -22,13 +22,14 @@ RM		=	rm -f
 
 #	FILES
 
-SRCS			=	*.cpp
+SRCS			=	main.cpp \
+					ScalarConversion.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 #	RULES
 
-all			:	run joke score
+all			:	joke run score
 
 $(NAME)		:	$(OBJS)
 				@$(CC) $(CFLAGS) -I . -o $@ $(OBJS)
@@ -39,7 +40,7 @@ $(NAME)		:	$(OBJS)
 re			:	fclean all
 
 clean		:
-			$(RM) $(OBJS) $(NAME).dSYM result
+			@$(RM) $(OBJS) $(NAME).dSYM result
 
 fclean		:	clean
 				@$(RM) $(NAME)
