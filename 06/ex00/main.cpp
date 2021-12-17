@@ -24,7 +24,7 @@ int main(int ac, char** av)
 /* try char */
 	try
 	{
-		char	c = static_cast< char >(sconv);
+		char	c = static_cast<char>(sconv);
 		std::cout << "char : ";
 		if (c < 48 || c > 57)
 		{
@@ -41,7 +41,7 @@ int main(int ac, char** av)
 /* try int */
 	try
 	{
-		int		i = static_cast< int >(sconv);
+		int		i = static_cast<int>(sconv);
 		std::cout << "int : " << i << std::endl;
 	}
 	catch(const std::exception& e)
@@ -52,7 +52,7 @@ int main(int ac, char** av)
 /* try float */
 	try
 	{
-		float	f = static_cast< float >(sconv);
+		float	f = static_cast<float>(sconv);
 		std::cout << "float : " << f << "f" << std::endl;
 	}
 	catch(const std::exception& e)
@@ -63,7 +63,7 @@ int main(int ac, char** av)
 /* try double */
 	try
 	{
-		double	d = static_cast< double >(sconv);
+		double	d = static_cast<double>(sconv);
 		std::cout << "double : " << d << std::endl;
 	}
 	catch(const std::exception& e)

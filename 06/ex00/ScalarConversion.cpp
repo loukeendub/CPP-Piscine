@@ -47,7 +47,7 @@ ScalarConversion::operator int() const
 ScalarConversion::operator char() const
 {
 	int	conv = static_cast<int>(*this);
-	if (!(std::numeric_limits<char>::min() <= conv && std::numeric_limits<char>::max() >= conv))
+	if (conv <= std::numeric_limits<char>::min() || conv >= std::numeric_limits<char>::max()))
 		throw (ImpossibleException());
 	if (conv < 32 || conv > 126)
 		throw (NotDisplayableException());
@@ -56,16 +56,16 @@ ScalarConversion::operator char() const
 
 ScalarConversion::operator float() const
 {
-	double	conv = 0.0f;
-	double	conv += static_cast<double>(*this);
+	
+	double	conv = static_cast<double>(*this);
 	return (static_cast<float>(conv));
 }
 
 ScalarConversion::operator double() const
 {
 	char*	endptr;
-	double	conv = 0.0;
-	double	conv += std::strtod(this->input.c_str(), &endptr);
+	
+	double	conv = std::strtod(this->input.c_str(), &endptr);
 	if (this->input.c_str() == endptr)
 		throw (ImpossibleException());	
 	return (conv);
