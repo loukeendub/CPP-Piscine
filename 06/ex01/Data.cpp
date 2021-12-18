@@ -1,6 +1,6 @@
 #include "Data.hpp"
 
-uintptr_t*	serialize(Data* p)
+uintptr_t	serialize(Data* p)
 {
 	uintptr_t	intp;
 
