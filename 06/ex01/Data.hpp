@@ -10,7 +10,7 @@ struct Data
 	int			num;
 };
 
-uintptr_t*	serialize();
-Data*	deserialize(uintptr_t* raw);
+uintptr_t*	serialize(Data* p);
+Data*	deserialize(uintptr_t raw);
 
 #endif
