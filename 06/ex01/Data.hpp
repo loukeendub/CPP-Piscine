@@ -2,7 +2,6 @@
 # define DATA_HPP
 
 # include <iostream>
-# include <cstring>
 
 struct Data
 {

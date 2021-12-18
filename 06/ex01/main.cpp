@@ -5,16 +5,16 @@ int	main(int ac, char** av)
 	Data*	data1 = new Data();
 	Data*	data2;
 
+	data1->str = "Fortytwo";
 	data1->num = 42;
-	data2->str = "Forty-two";
 
-	std::cout << "Data ADDRESS : " << data1 << std::endl;
+	std::cout << std::endl << "Data ADDRESS : " << data1 << std::endl;
 	std::cout << "Data STR : " << data1->str << std::endl;
 	std::cout << "Data NUM : " << data1->num << std::endl << std::endl;
 
 	uintptr_t	raw = serialize(data1);
 
-	std::cout << "Data SERIALIZED : " << raw << std::endl << std::endl;
+	std::cout << "Data SERIALIZED to raw : " << raw << std::endl << std::endl;
 
 	data2 = deserialize(raw);
 
