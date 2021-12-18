@@ -22,7 +22,8 @@ RM			=	rm -rf
 
 #	FILES
 
-SRCS			=	< file names go here >
+SRCS			=	main.cpp \
+					Data.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -51,7 +52,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Serialization ]	---------------------"
-				@echo "   Wow, this is even more interesting than previous exercise"
+				@echo "      Wow, this is even more fun than previous exercise"
 				@echo ""
 				@echo "                          NOT!"
 				@echo "\n"
