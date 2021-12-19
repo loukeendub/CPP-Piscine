@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
+#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/16 22:38:03 by lmarzano         ###   ########.fr        #
+#    Updated: 2021/12/19 13:31:22 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ RM			=	rm -rf
 
 #	FILES
 
-SRCS			=	< file names go here >
+SRCS			=	main.cpp \
+					Identify.cpp \
+					Base.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
