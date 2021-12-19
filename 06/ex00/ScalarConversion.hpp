@@ -1,7 +1,8 @@
 #ifndef SCALARCONVERSION_HPP
 # define SCALARCONVERSION_HPP
 
-# include <string>
+
+# include <iostream>
 # include <exception>
 # include <limits>
 
