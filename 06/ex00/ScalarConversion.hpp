@@ -33,7 +33,7 @@ public:
 	operator float() const;
 	operator double() const;
 
-	std::string			getInput() const;
+	//std::string			getInput() const;//	DEBUG
 };
 
 #endif
