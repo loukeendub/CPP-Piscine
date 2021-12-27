@@ -11,32 +11,36 @@ const char*	ScalarConversion::NotDisplayableException::what() const throw()
 	return ("Non displayable");
 }
 
+const char*	ScalarConversion::InvalidException::what() const throw()
+{
+	return ("Invalid argument");
+}
+
 //	constr/destr
 ScalarConversion::ScalarConversion()
 {}
 
 ScalarConversion::ScalarConversion(const char* av)	:
-nan(false)
+num(false)
 {
-	int	isAlpha = 0;
-
+	for (int i = 0; av[i]; i++)
+	{
+		if (av[i] >= '0' && av[i] <= '9' && av[0] >= '0' && av[0] <= '9')
+			num = true;
+	}
 	if (static_cast<std::string>(av).compare("nan") == 0 \
 		|| static_cast<std::string>(av).compare("nanf") == 0 \
 		|| static_cast<std::string>(av).compare("inf") == 0)
-		nan = true;
-	for (int i = 0; av[i]; i++)
-	{
-		if ((av[i] < 126 && av[i] > 32) \
-		|| (av[i] < '0' && av[i] > '9'))
-			isAlpha = 1;
-		if ((av[i] == 'f' && av[i - 1] >= '0' && av[i - 1] <='9'))// issue with float bloody 'f'
-			isAlpha = 0;
-	}
+		num = true;
 
-	if (isAlpha == 1 && nan == false)
+	if (num == false)
+	{
 		this->intValue = static_cast<double>(*av);
+	}
 	else
-		this->intValue = std::stod(av);
+	{
+		this->intValue = std::stod(static_cast<const std::string>(av));
+	}
 }
 
 ScalarConversion::ScalarConversion(const ScalarConversion& copy)

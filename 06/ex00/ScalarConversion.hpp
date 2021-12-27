@@ -11,7 +11,7 @@ class ScalarConversion
 {
 private:
 	ScalarConversion();
-	bool		nan;
+	bool		num;
 	double		intValue;
 public:
 	class ImpossibleException : public std::exception
@@ -20,6 +20,11 @@ public:
 			const char*	what() const throw();
 	};
 	class NotDisplayableException : public std::exception
+	{
+		public:
+			const char*	what() const throw();
+	};
+	class InvalidException : public std::exception
 	{
 		public:
 			const char*	what() const throw();

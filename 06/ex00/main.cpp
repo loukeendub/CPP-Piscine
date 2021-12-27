@@ -6,7 +6,7 @@
 /*   By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 22:38:56 by lmarzano          #+#    #+#             */
-/*   Updated: 2021/12/27 12:28:34 by loukeen          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:25:11 by loukeen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ int main(int ac, char** av)
 	try
 	{
 		char	c = static_cast<char>(sconv);
-		std::cout << "char : '" << c << "'" << std::endl;
+		std::cout << "char: '" << c << "'" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "char : " << e.what() << std::endl;
+		std::cout << "char: " << e.what() << std::endl;
 	}
 
 /* try int */
 	try
 	{
 		int		i = static_cast<int>(sconv);
-		std::cout << "int : " << i << std::endl;
+		std::cout << "int: " << i << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "int : " << e.what() << std::endl;
+		std::cout << "int: " << e.what() << std::endl;
 	}
 	
 	std::cout << std::setprecision(1) << std::fixed;
@@ -51,22 +51,22 @@ int main(int ac, char** av)
 	try
 	{
 		float	f = static_cast<float>(sconv);
-		std::cout << "float : " << f << "f" << std::endl;
+		std::cout << "float: " << f << "f" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "float : " << e.what() << std::endl;
+		std::cout << "float: " << e.what() << std::endl;
 	}
 
 /* try double */
 	try
 	{
 		double	d = static_cast<double>(sconv);
-		std::cout << "double : " << d << std::endl;
+		std::cout << "double: " << d << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "double : " << e.what() << std::endl;
+		std::cout << "double: " << e.what() << std::endl;
 	}
 	
 	return (0);
