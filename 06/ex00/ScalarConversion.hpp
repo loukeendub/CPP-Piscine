@@ -3,6 +3,7 @@
 
 
 # include <iostream>
+# include <cctype>
 # include <exception>
 # include <limits>
 
@@ -10,7 +11,8 @@ class ScalarConversion
 {
 private:
 	ScalarConversion();
-	std::string input;
+	bool		nan;
+	double		intValue;
 public:
 	class ImpossibleException : public std::exception
 	{

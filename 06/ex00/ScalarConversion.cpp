@@ -15,9 +15,29 @@ const char*	ScalarConversion::NotDisplayableException::what() const throw()
 ScalarConversion::ScalarConversion()
 {}
 
-ScalarConversion::ScalarConversion(const char* av) :
-input(static_cast<std::string>(av))
-{}
+ScalarConversion::ScalarConversion(const char* av)	:
+nan(false)
+{
+	int	isAlpha = 0;
+
+	if (static_cast<std::string>(av).compare("nan") == 0 \
+		|| static_cast<std::string>(av).compare("nanf") == 0 \
+		|| static_cast<std::string>(av).compare("inf") == 0)
+		nan = true;
+	for (int i = 0; av[i]; i++)
+	{
+		if ((av[i] < 126 && av[i] > 32) \
+		|| (av[i] < '0' && av[i] > '9'))
+			isAlpha = 1;
+		if ((av[i] == 'f' && av[i - 1] >= '0' && av[i - 1] <='9'))// issue with float bloody 'f'
+			isAlpha = 0;
+	}
+
+	if (isAlpha == 1 && nan == false)
+		this->intValue = static_cast<double>(*av);
+	else
+		this->intValue = std::stod(av);
+}
 
 ScalarConversion::ScalarConversion(const ScalarConversion& copy)
 {
@@ -32,7 +52,7 @@ ScalarConversion&	ScalarConversion::operator = (const ScalarConversion& op)
 {
 	if (this == &op)
 		return (*this);
-	this->input = op.input;
+	this->intValue = op.intValue;
 	return (*this);
 }
 
@@ -60,24 +80,13 @@ ScalarConversion::operator float() const
 {
 	
 	double	conv = static_cast<double>(*this);
-//std::cout << "float conv done" << std::endl;//	DEBUG
 
 	return (static_cast<float>(conv));
 }
 
-ScalarConversion::operator double() const//	something wrong with returning value of this op. 
+ScalarConversion::operator double() const
 {
-	char*	endptr;
-	double	conv = std::strtod(this->input.c_str(), &endptr);// this is where I lose data
-// std::cout << "double INPUT : " << input << std::endl;//	DEBUG they should output the same value if float
-// std::cout << "double conv  : " << conv << std::endl;//	DEBUG they should output  value.0 if int
-
-	if (this->input.c_str() == endptr)
+	if (this->intValue == -1.0)
 		throw (ImpossibleException());	
-	return (conv);
+	return (this->intValue);
 }
-
-//std::string	ScalarConversion::getInput() const//	DEBUG
-// {
-// 	return (this->input);
-// }

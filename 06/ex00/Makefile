@@ -6,13 +6,13 @@
 #    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/17 13:44:04 by loukeen          ###   ########.fr        #
+#    Updated: 2021/12/27 12:28:47 by loukeen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	ARGS
 
-NAME		=	scalar_conversion
+NAME		=	convert
 
 CC			=	clang++
 
