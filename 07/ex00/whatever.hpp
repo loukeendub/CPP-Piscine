@@ -13,7 +13,7 @@ void	swap(myType& a, myType& b)
 }
 
 template <class myType>
-myType	min(myType& a, myType& b)
+myType	min(const myType& a, const myType& b)
 {
 	if (a < b)
 		return (a);
@@ -21,7 +21,7 @@ myType	min(myType& a, myType& b)
 }
 
 template <class myType>
-myType	max(myType& a, myType& b)
+myType	max(const myType& a, const myType& b)
 {
 	if (a > b)
 		return (a);

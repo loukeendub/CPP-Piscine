@@ -19,20 +19,6 @@ void testMain()
 	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
 }
 
-int	checkInput(std::string input)
-{
-	if (input == "main")
-		return (1);
-	else if (input == "swap")
-		return (2);
-	else if (input == "min")
-		return (3);
-	else if (input == "max")
-		return (4);
-	else
-		return (0);
-}
-
 void	testSwap()
 {
 	int	a = 2;
@@ -61,6 +47,20 @@ void	testMax()
 {
 	std::cout << "Values to compare : 4, 2 | max : " << ::max(4, 2) << std::endl;
 	std::cout << "Values to compare : true, false | max : " << std::boolalpha << ::max(true, false) << std::endl;
+}
+
+int	checkInput(std::string input)
+{
+	if (input == "main")
+		return (1);
+	else if (input == "swap")
+		return (2);
+	else if (input == "min")
+		return (3);
+	else if (input == "max")
+		return (4);
+	else
+		return (0);
 }
 
 int main()
