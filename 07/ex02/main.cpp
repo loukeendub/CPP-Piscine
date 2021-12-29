@@ -12,15 +12,15 @@ void	testInt()
 {
 	Array<int>	intArr(5);
 	
-	for (int i = 0; intArr[i]; i++)
+	for (int i = 0; i < 5; i++)
 		std::cout << intArr[i] << " ";
 	std::cout << std::endl;
 
-	for (int i = 0; intArr[i]; i++)
+	for (int i = 0; i < 5; i++)
 		intArr[i] = i + 1;
 	std::cout << std::endl;
 
-	for (int i = 0; intArr[i]; i++)
+	for (int i = 0; i < 5; i++)
 		std::cout << intArr[i] << " ";
 	std::cout << std::endl;
 }
@@ -29,13 +29,13 @@ void	testString()
 {
 	Array<std::string>	strArr(5);
 	
-	for (int i = 0; strArr[i]; i++)
+	for (int i = 0; i < 5; i++)
 		std::cout << strArr[i] << "," << std::endl;
 
-	for (int i = 0; strArr[i]; i++)
+	for (int i = 0; i < 5; i++)
 		strArr[i] = "Array position ";
 
-	for (int i = 0; strArr[i]; i++)
+	for (int i = 0; i < 5; i++)
 		std::cout << strArr[i] << i << std::endl;
 }
 
@@ -43,13 +43,18 @@ void	testAssign()
 {
 	Array<int>	first(5);
 
-	for (int i = 0; first[i]; i++)
+	for (int i = 0; i < 5; i++)
 		first[i] = i + 1;
 	
 	Array<int>	second;
 
 	second = first;
-	for (int i = 0; second[i]; i++)
+	
+	std::cout << "Original: ";
+	for (int i = 0; i < 5; i++)
+		std::cout << first[i] << " ";
+	std::cout << std::endl << "Assigned: ";
+	for (int i = 0; i < 5; i++)
 		std::cout << second[i] << " ";
 	std::cout << std::endl;
 }
@@ -58,12 +63,16 @@ void	testCopy()
 {
 	Array<int>	first(5);
 
-	for (int i = 0; first[i]; i++)
+	for (int i = 0; i < 5; i++)
 		first[i] = i + 1;
 	
 	Array<int>	second(first);
 
-	for (int i = 0; second[i]; i++)
+	std::cout << "Original: ";
+	for (int i = 0; i < 5; i++)
+		std::cout << first[i] << " ";
+	std::cout << std::endl << "Copy: ";
+	for (int i = 0; i < 5; i++)
 		std::cout << second[i] << " ";
 	std::cout << std::endl;
 }
@@ -90,7 +99,7 @@ int main()
 	std::string	input;
 
 	std::cout << "Please select an option:" << std::endl;
-	std::cout << "<main> <swap> <min> <max>" << std::endl;
+	std::cout << "<empty> <int> <string> <assign> <copy>" << std::endl;
 	std::getline(std::cin, input, '\n');// gets input value
 
 	switch (checkInput(input))

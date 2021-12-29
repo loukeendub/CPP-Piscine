@@ -34,13 +34,13 @@ class Array
 		Array() :
 		_size(0)
 		{
-			this->arr = new[0];
+			this->arr = new T[0];
 		}
 
 		Array(unsigned int n) :
 		_size(n)
 		{
-			this->arr = new[n];
+			this->arr = new T[n];
 			for (unsigned int i = 0; i < this->_size; i++)
 				this->arr[i] = T();
 		}
