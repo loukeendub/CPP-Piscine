@@ -12,7 +12,7 @@
 
 #	ARGS
 
-NAME		=	easyFind
+NAME		=	mutatedAbomination
 
 CC			=	clang++
 
@@ -50,7 +50,7 @@ score		:
 				@echo "      -----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------------	[ Easy Find ]	---------------------"
+				@echo "--------------------	[ Mutated Abomination ]	---------------------"
 				@echo "      joke"
 				@echo ""
 				@echo "      joke"

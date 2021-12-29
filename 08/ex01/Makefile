@@ -12,7 +12,7 @@
 
 #	ARGS
 
-NAME		=	easyFind
+NAME		=	span
 
 CC			=	clang++
 
@@ -50,7 +50,7 @@ score		:
 				@echo "      -----------------------[READY]---------------------"
 
 joke		: 
-				@echo "--------------------	[ Easy Find ]	---------------------"
+				@echo "--------------------	[ Span ]	---------------------"
 				@echo "      joke"
 				@echo ""
 				@echo "      joke"
