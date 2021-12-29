@@ -7,7 +7,7 @@ template <class Array, class Function>
 void    iter(Array* arr, size_t size, Function* foo)
 {
     for (size_t i = 0; i < size; i++)
-        foo(arr(i));
+        foo(arr[i]);
 }
 
 template <class myType>
