@@ -2,7 +2,6 @@
 # define WHATEVER_HPP
 
 # include <iostream>
-//# include <string>
 
 template <class myType>
 void	swap(myType& a, myType& b)
