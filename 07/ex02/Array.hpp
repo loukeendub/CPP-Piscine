@@ -85,11 +85,6 @@ class Array
 		{
 			return (this->_size);
 		}
-
-		const char*	OutOfLimitsException::what() const throw()
-		{
-			return ("Error: Out of range limit.");
-		}
 };
 
 //Array::Array() :
