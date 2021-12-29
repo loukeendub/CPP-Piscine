@@ -2,10 +2,13 @@
 
 void	testEmpty()
 {
-	Array<int>	emptyArr;
+	Array<int>	empty;
 
-	std::cout << "Empty Array address: " << &emptyArr << std::endl;
-	std::cout << "Empty Array [0]: " << emptyArr[0] << std::endl;
+	std::cout << "Array address: " << &empty << std::endl;
+	if (empty[0])
+		std::cout << "Array[0]: " << emptyArr[0] << std::endl;
+	else
+		std::cout << "Array is empty." << std::endl;
 }
 
 void	testInt()
