@@ -51,7 +51,7 @@ score		:
 
 joke		: 
 				@echo "--------------------	[ Array ]	---------------------"
-				@echo "      Do you remember when we used to have fun doung this?"
+				@echo "      Do you remember when we used to have fun doing this?"
 				@echo ""
 				@echo "                    I don't..."
 				@echo "\n"
