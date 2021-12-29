@@ -25,9 +25,9 @@ int	main()
 
 	std::string	str[] = {"two", "forty"};
 	
-	::iter(array, 2, putString);
+	::iter(str, 2, putString);
 	::swap(str[0], str[1]);
-	::iter(array, 2, putString);
+	::iter(str, 2, putString);
 
 	return (0);
 }
