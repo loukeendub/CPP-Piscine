@@ -19,15 +19,15 @@ int	main()
 {
 	int	array[] = {0, 1, 2, 3, 4};
 
-	::iter(array, 5, putNumber());
-	::iter(array, 5, increment());
-	::iter(array, 5, putNumber());
+	::iter(array, 5, putNumber);
+	::iter(array, 5, increment);
+	::iter(array, 5, putNumber);
 
 	std::string	str[] = {"two", "forty"};
 	
-	::iter(array, 5, putString());
+	::iter(array, 5, putString);
 	::swap(str[0], str[1]);
-	::iter(array, 5, putString());
+	::iter(array, 5, putString);
 
 	return (0);
 }
