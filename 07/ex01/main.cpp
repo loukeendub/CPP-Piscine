@@ -1,16 +1,16 @@
 #include "iter.hpp"
 
-void	putNumber(int& i)
+static void	putNumber(int& i)
 {
 	std::cout << i << std::endl;
 }
 
-void	putString(std::string& str)
+static void	putString(std::string& str)
 {
 	std::cout << str << std::endl;
 }
 
-void	increment(int& i)
+static void	increment(int& i)
 {
 	i++;
 }
