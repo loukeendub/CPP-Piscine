@@ -5,10 +5,15 @@ void	testEmpty()
 	Array<int>	empty;
 
 	std::cout << "Array address: " << &empty << std::endl;
-	if (empty[0])
-		std::cout << "Array[0]: " << emptyArr[0] << std::endl;
-	else
-		std::cout << "Array is empty." << std::endl;
+	try
+	{
+		empty[0] = 0;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	
 }
 
 void	testInt()
@@ -52,7 +57,7 @@ void	testAssign()
 	Array<int>	second;
 
 	second = first;
-	
+
 	std::cout << "Original: ";
 	for (int i = 0; i < 5; i++)
 		std::cout << first[i] << " ";

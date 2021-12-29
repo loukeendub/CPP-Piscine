@@ -16,7 +16,7 @@ class Array
 			public:
 				const char* what() const throw()
 				{
-					return ("Error: Out of range limit.");
+					return ("Out of range limit.");
 				}
 		};
 	public:
