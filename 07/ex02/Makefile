@@ -22,7 +22,7 @@ RM			=	rm -rf
 
 #	FILES
 
-SRCS			=	#< files *.cpp go here >
+SRCS			=	main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
