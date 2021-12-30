@@ -22,6 +22,7 @@ class Span
 			public:
 				const char*	what() const throw();
 		};
+		
 	public:
 		Span(unsigned int N);
 		Span(const Span& copy);
