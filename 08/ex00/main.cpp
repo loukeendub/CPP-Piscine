@@ -3,7 +3,8 @@
 int main()
 {
 	std::vector<int>	vect;
-	std::string				input;
+	std::string			input;
+	double				conv;
 
 	for (int i = 0; i < 5; i++)
 		vect.push_back(i + 1);
@@ -13,16 +14,19 @@ int main()
 
 	std::vector<int>::const_iterator	iter;
 
+	conv = std::stod(input);
 	std::cout << "Search Result: ";
 	try
 	{
-		iter = easyfind(vect, (input - 48))
+		iter = easyfind(vect, (static_cast<int>(conv)));
+		std::cout << "Element " << *iter << " was found inside container." << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-	std::cout << *iter << std::endl;
 	
 	return (0);
 }
+
+//	clang++ -Wall -Wextra -Werror -std=c++98 main.cpp
