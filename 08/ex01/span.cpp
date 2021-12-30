@@ -1,0 +1,59 @@
+#include "span.hpp"
+
+//  Exceptions
+const char*	Span::ExceededSpaceException::whatwhat() const throw()
+{
+    return ("Container is full.");
+}
+
+const char*	Span::NotEnoughElemsException:: what() const throw()
+{
+    return ("Not enough Elements.");
+}
+
+//  Canonical
+Span::Span() :
+size(0)
+{}
+
+Span::Span(unsigned int N) :
+size(N)
+{}
+
+Span::Span(const Span& copy)
+{
+    *this = copy;
+}
+
+Span::~Span()
+{}
+
+Span&	Span::operator = (const Span& op)
+{
+    if (this == &op)
+        return (*this);
+    this->vect.clear();
+    this->size = copy.size;
+    this->vect = copy.vect;
+    return (*this);
+}
+
+//  Functions
+void	Span::addNumber(const int& n)
+{
+    if (vect.size() == this->size)
+        throw (ExceededSpaceException());
+    vect.push_back(n);
+}
+
+unsigned int	Span::shortestSpan()
+{
+    if (this->vect.size() < 2)
+        throw (NotEnoughElemsException());
+    
+}
+
+unsigned int	Span::longestSpan()
+{
+
+}
