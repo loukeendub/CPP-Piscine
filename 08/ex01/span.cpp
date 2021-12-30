@@ -3,12 +3,12 @@
 //  Exceptions
 const char*	Span::ExceededSpaceException::whatwhat() const throw()
 {
-    return ("Container is full.");
+	return ("Container is full.");
 }
 
 const char*	Span::NotEnoughElemsException:: what() const throw()
 {
-    return ("Not enough Elements.");
+	return ("Not enough Elements.");
 }
 
 //  Canonical
@@ -22,7 +22,7 @@ size(N)
 
 Span::Span(const Span& copy)
 {
-    *this = copy;
+	*this = copy;
 }
 
 Span::~Span()
@@ -30,30 +30,46 @@ Span::~Span()
 
 Span&	Span::operator = (const Span& op)
 {
-    if (this == &op)
-        return (*this);
-    this->vect.clear();
-    this->size = copy.size;
-    this->vect = copy.vect;
-    return (*this);
+	if (this == &op)
+		return (*this);
+	this->vect.clear();
+	this->size = copy.size;
+	this->vect = copy.vect;
+	return (*this);
 }
 
 //  Functions
 void	Span::addNumber(const int& n)
 {
-    if (vect.size() == this->size)
-        throw (ExceededSpaceException());
-    vect.push_back(n);
+	if (vect.size() == this->size)
+		throw (ExceededSpaceException());
+	vect.push_back(n);
 }
 
 unsigned int	Span::shortestSpan()
 {
-    if (this->vect.size() < 2)
-        throw (NotEnoughElemsException());
-    
+	std::vector<int>	iter;
+	int					tmp;
+	int					ret;
+
+	if (this->vect.size() < 2)
+		throw (NotEnoughElemsException());
+
+	std::sort(vect.begin(), vect.end());
+	iter = vect.begin();
+	ret = std::abs(*(iter + 1) - *iter);
+	for (iter += 2; iter < vect.end(); iter++)
+	{
+		tmp = std::abs(*iter - *(iter - 1));
+		if (tmp < ret)
+			ret = tmp;
+	}
+	return (ret);
 }
 
 unsigned int	Span::longestSpan()
 {
-
+	if (this->vect.size() < 2)
+		throw (NotEnoughElemsException());
+	return (std::abs(*std::max_element(vect.begin(), vect.end()) - *std::min_element(vect.begin(), vect.end())));
 }
