@@ -15,13 +15,13 @@ class Span
 		{
 			public:
 				const char*	what() const throw();
-		}
+		};
 
 		class NotEnoughElemsException : public std::exception
 		{
 			public:
 				const char*	what() const throw();
-		}
+		};
 	public:
 		Span(unsigned int N);
 		Span(const Span& copy);
