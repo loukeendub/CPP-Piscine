@@ -6,6 +6,7 @@
 # include <cctype>
 # include <exception>
 # include <limits>
+# include <cmath>
 
 class ScalarConversion
 {

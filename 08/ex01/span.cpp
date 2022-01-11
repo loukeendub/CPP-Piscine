@@ -48,7 +48,7 @@ void	Span::addNumber(const int& n)
 
 unsigned int	Span::shortestSpan()
 {
-	std::vector<int>	iter;
+	std::vector<int>::iterator	iter;
 	int					tmp;
 	int					ret;
 
