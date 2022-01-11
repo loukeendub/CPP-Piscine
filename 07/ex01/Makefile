@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loukeen <loukeen@student.42.fr>            +#+  +:+       +#+         #
+#    By: lmarzano <lmarzano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 11:26:38 by lmarzano          #+#    #+#              #
-#    Updated: 2021/12/19 13:31:22 by loukeen          ###   ########.fr        #
+#    Updated: 2022/01/11 13:38:24 by lmarzano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME)		:	$(OBJS)
 re			:	fclean all
 
 clean		:
-			@$(RM) $(OBJS) result
+			@$(RM) $(OBJS)
 
 fclean		:	clean
 				@$(RM) $(NAME)
