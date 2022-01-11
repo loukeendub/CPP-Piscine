@@ -1,12 +1,12 @@
 #include "span.hpp"
 
 //  Exceptions
-const char*	Span::ExceededSpaceException::whatwhat() const throw()
+const char*	Span::ExceededSpaceException::what() const throw()
 {
 	return ("Container is full.");
 }
 
-const char*	Span::NotEnoughElemsException:: what() const throw()
+const char*	Span::NotEnoughElemsException::what() const throw()
 {
 	return ("Not enough Elements.");
 }
@@ -33,8 +33,8 @@ Span&	Span::operator = (const Span& op)
 	if (this == &op)
 		return (*this);
 	this->vect.clear();
-	this->size = copy.size;
-	this->vect = copy.vect;
+	this->size = op.size;
+	this->vect = op.vect;
 	return (*this);
 }
 
