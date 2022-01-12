@@ -2,7 +2,6 @@
 # define SPAN_HPP
 
 # include <exception>
-# include <string>
 # include <iostream>
 # include <algorithm>
 # include <vector>
