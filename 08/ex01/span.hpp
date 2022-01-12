@@ -6,6 +6,8 @@
 # include <iostream>
 # include <algorithm>
 # include <vector>
+# include <cmath>
+# include <limits>
 
 class Span
 {
