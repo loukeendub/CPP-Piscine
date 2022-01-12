@@ -12,6 +12,7 @@ class Span
 		std::vector<int>	vect;
 
 	public:
+	//  Exceptions
 		class ExceededSpaceException : public std::exception
 		{
 			public:
@@ -23,13 +24,13 @@ class Span
 			public:
 				const char*	what() const throw();
 		};
-		
+		//  Canonical
 		Span(unsigned int N);
 		Span(const Span& copy);
 		virtual ~Span();
 
 		Span&	operator = (const Span& op);
-
+		//  Functions
 		void	addNumber(const int& n);
 
 		template <typename iter>
