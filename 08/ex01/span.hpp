@@ -11,18 +11,6 @@ class Span
 		unsigned int		size;
 		std::vector<int>	vect;
 
-		class ExceededSpaceException : public std::exception
-		{
-			public:
-				const char*	what() const throw();
-		};
-
-		class NotEnoughElemsException : public std::exception
-		{
-			public:
-				const char*	what() const throw();
-		};
-		
 	public:
 		Span(unsigned int N);
 		Span(const Span& copy);
@@ -41,6 +29,18 @@ class Span
 		
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
+		
+		class ExceededSpaceException : public std::exception
+		{
+			public:
+				const char*	what() const throw();
+		};
+
+		class NotEnoughElemsException : public std::exception
+		{
+			public:
+				const char*	what() const throw();
+		};
 };
 
 #endif
