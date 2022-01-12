@@ -29,7 +29,7 @@ int main()
         span.addNumber(-4);
 //        span.addNumber(-10);
     }
-    catch (Span::NoSpaceException const & ex)
+    catch (Span::ExceededSpaceException const & ex)
 	{
        std::cout << ex.what() << std::endl;
     }
@@ -38,7 +38,7 @@ int main()
         int min_sp = span.shortestSpan();
         std::cout << "The shortest span is " << min_sp << std::endl;
     }
-    catch (Span::NoEnoughElementsException const &ex)
+    catch (Span::NotEnoughElemsException const &ex)
 	{
         std::cout << ex.what() << std::endl;
     }
@@ -47,7 +47,7 @@ int main()
         int max_sp = span.longestSpan();
         std::cout << "The longest span is " << max_sp << std::endl;
     }
-    catch (Span::NoEnoughElementsException const &ex)
+    catch (Span::NotEnoughElemsException const &ex)
 	{
         std::cout << ex.what() << std::endl;
     }
@@ -64,7 +64,7 @@ int main()
 	{
         span_2.addNumber(v.begin(), v.end());
     }
-    catch (Span::NoSpaceException const & ex)
+    catch (Span::ExceededSpaceException const & ex)
 	{
         std::cout << ex.what() << std::endl;
     }
@@ -74,7 +74,7 @@ int main()
         int min_sp_2 = span_2.shortestSpan();
         std::cout << "The shortest span is " << min_sp_2 << std::endl;
     }
-    catch (Span::NoEnoughElementsException const &ex)
+    catch (Span::NotEnoughElemsException const &ex)
 	{
         std::cout << ex.what() << std::endl;
     }
@@ -83,7 +83,7 @@ int main()
         int max_sp_2 = span_2.longestSpan();
         std::cout << "The longest span is " << max_sp_2 << std::endl;
     }
-    catch (Span::NoEnoughElementsException const &ex)
+    catch (Span::NotEnoughElemsException const &ex)
 	{
         std::cout << ex.what() << std::endl;
     }
