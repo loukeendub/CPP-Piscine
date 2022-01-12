@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <vector>
-# include <algorithm>
 
 class Span
 {
@@ -13,6 +12,18 @@ class Span
 		std::vector<int>	vect;
 
 	public:
+		class ExceededSpaceException : public std::exception
+		{
+			public:
+				const char*	what() const throw();
+		};
+
+		class NotEnoughElemsException : public std::exception
+		{
+			public:
+				const char*	what() const throw();
+		};
+		
 		Span(unsigned int N);
 		Span(const Span& copy);
 		virtual ~Span();
@@ -30,18 +41,6 @@ class Span
 		
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
-		
-		class ExceededSpaceException : public std::exception
-		{
-			public:
-				const char*	what() const throw();
-		};
-
-		class NotEnoughElemsException : public std::exception
-		{
-			public:
-				const char*	what() const throw();
-		};
 };
 
 #endif
