@@ -1,41 +1,49 @@
 #include "mutantstack.hpp"
 
-MutantStack::MutantStack() :
+template <class T>
+MutantStack<T>::MutantStack() :
 std::stack<T>()
 {}
 
-MutantStack::MutantStack(const MutantStack& copy)
+template <class T>
+MutantStack<T>::MutantStack(const MutantStack& copy)
 {
 	*this = copy;
 }
 
-MutantStack::~MutantStack()
+template <class T>
+MutantStack<T>::~MutantStack()
 {}
 
-MutantStack&	MutantStack::operator = (const MutantStack& op)
+template <class T>
+MutantStack<T>&	MutantStack<T>::operator = (const MutantStack& op)
 {
-	if (this = &op)
+	if (this == &op)
 		return (*this);
-	this->c = copy.c;
+	this->c = op.c;
 	return (*this);
 }
 
-iterator	MutantStack::begin()
+template <class T>
+typename MutantStack<T>::iterator	MutantStack<T>::begin()
 {
 	return (this->c.begin());
 }
 
-iterator	MutantStack::end()
+template <class T>
+typename MutantStack<T>::iterator	MutantStack<T>::end()
 {
 	return (this->c.end());
 }
 
-const_iterator	MutantStack::begin()
+template <class T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::start()
 {
 	return (this->c.begin());
 }
 
-const_iterator	MutantStack::end()
+template <class T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::finish()
 {
 	return (this->c.end());
 }

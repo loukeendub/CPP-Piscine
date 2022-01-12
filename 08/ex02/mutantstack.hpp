@@ -5,7 +5,7 @@
 # include <stack>
 
 template <class T>
-class MutantStack
+class MutantStack : public std::stack<T>
 {
 	public:
 		MutantStack();
@@ -19,8 +19,8 @@ class MutantStack
 		iterator	end();
 
 		typedef typename	std::stack<T>::container_type::const_iterator const_iterator;
-		const_iterator	begin();
-		const_iterator	end();
+		const_iterator	start();
+		const_iterator	finish();
 };
 
 #endif
